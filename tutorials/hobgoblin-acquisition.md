@@ -126,7 +126,7 @@ In the control section of this tutorial, we will send commands to turn on and of
 (TODO: wiring diagram)
 
 > [!TIP]
-> You can use another device (such as a potentiometer, button, etc) and one of the other digital output channels by changing the appropriate properties.
+> You can use another actuator (such as a active buzzer) and one of the other digital output channels by changing the appropriate properties.
 
 Previously we have been acquiring data from the `Hobgoblin` by placing operators after the [`Device`] operator. In order to send commands to the device, we need to place operators that lead into the [`Device`] operator.
 
