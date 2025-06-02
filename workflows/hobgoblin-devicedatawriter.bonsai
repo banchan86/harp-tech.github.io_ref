@@ -48,6 +48,7 @@
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="p1:DeviceDataWriter">
+          <p1:Path>data</p1:Path>
           <p1:Buffered>true</p1:Buffered>
           <p1:Overwrite>false</p1:Overwrite>
           <p1:FilterType>Include</p1:FilterType>
