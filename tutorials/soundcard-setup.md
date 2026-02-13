@@ -10,7 +10,7 @@ The [Harp SoundCard](https://github.com/harp-tech/device.soundcard) is a high-pe
 - Connect both `SoundCard` USB cables to the computer.
 - Install the WinUSB driver:
    - Download and launch [Zadig](https://zadig.akeo.ie/).
-   - Select the "Harp Sound Card" from the list. If the device is not available, go to "Options" -> "List All Devices".
+   - Select the "Harp Sound Card" from the list. If the device is not available, go to "Options" > "List All Devices".
    - Select the "WinUSB" driver and click "Install Driver".
 - Install [Bonsai](https://bonsai-rx.org/docs/articles/installation.html).
 - Install the `Harp.SoundCard` package by searching for it in the [Bonsai package manager](https://bonsai-rx.org/docs/articles/packages.html).
