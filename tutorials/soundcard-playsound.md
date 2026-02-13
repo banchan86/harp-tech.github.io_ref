@@ -22,7 +22,7 @@ Set up the standard Harp [device pattern](../articles/operators.md#device-patter
    - This will save the data in the standard Harp logging format, which can be loaded with [`harp-python`](../articles/python.md).
 - Insert a [`PublishSubject`] operator and name it `SoundCard Events`.
 - Right-click the [`Device`] operator, select "Create Source (Bonsai.Harp.HarpMessage)" > "BehaviorSubject". 
-   - Name the generated [``BehaviourSubject`1``] operator `SoundCard Commands`. 
+   - Name the generated [``BehaviourSubject`1``] [source subject](https://bonsai-rx.org/docs/articles/subjects.html#source-subjects) `SoundCard Commands`. 
    - Connect it as input to the [`Device`] operator.
 
 ### Exercise 1 - Play sound index
