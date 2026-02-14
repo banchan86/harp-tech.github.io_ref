@@ -60,7 +60,7 @@
       <tspan dy="8.25pt" id="130">Create</tspan>
     </text>
     <text id="132" transform="matrix(1.00 0.00 0.00 1.00 0.00 0.00 ) " x="4.00px" y="51.45px" style="stroke:none;clip-path:url(#134_text_clipper);font-family:Microsoft Sans Serif;font-size:8.25pt;opacity:1;">
-      <tspan dy="8.25pt" id="136">Continuous</tspan>
+      <tspan dy="8.25pt" id="136">Discrete</tspan>
     </text>
     <text id="138" transform="matrix(1.00 0.00 0.00 1.00 0.00 0.00 ) " x="4.00px" y="63.90px" style="stroke:none;clip-path:url(#140_text_clipper);font-family:Microsoft Sans Serif;font-size:8.25pt;opacity:1;">
       <tspan dy="8.25pt" id="142">Uniform</tspan>
@@ -89,13 +89,13 @@
       <rect x="84.00" y="119.00" width="52.15" height="13.83" id="116" />
     </clipPath>
     <clipPath id="128_text_clipper">
-      <rect x="4.00" y="39.00" width="61.05" height="41.48" id="129" />
+      <rect x="4.00" y="39.00" width="45.28" height="41.48" id="129" />
     </clipPath>
     <clipPath id="134_text_clipper">
-      <rect x="4.00" y="51.45" width="61.05" height="41.48" id="135" />
+      <rect x="4.00" y="51.45" width="45.28" height="41.48" id="135" />
     </clipPath>
     <clipPath id="140_text_clipper">
-      <rect x="4.00" y="63.90" width="61.05" height="41.48" id="141" />
+      <rect x="4.00" y="63.90" width="45.28" height="41.48" id="141" />
     </clipPath>
   </defs>
 </svg>
