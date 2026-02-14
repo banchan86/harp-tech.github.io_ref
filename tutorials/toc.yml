@@ -5,3 +5,4 @@
 - name: Harp SoundCard
 - href: soundcard-setup.md
 - href: soundcard-playsound.md
+- href: soundcard-uploadwaveform.md
