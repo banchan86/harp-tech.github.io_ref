@@ -34,9 +34,9 @@ Sounds can be played from the `SoundCard` onboard memory by using the [`PlaySoun
 :::
 
 - Insert a [`KeyDown`] source and set the `Filter` property to `A`. 
-- Insert a [`CreateMessage`] operator to construct a [`HarpMessage`] command to send to the device.
-    - Select [`PlaySoundOrFrequencyPayload`] from the `Payload` property dropdown menu.
-    - Set the `PlaySoundOrFrequency` property to the index of the sound you want to play from the `SoundCard` onboard memory (2-31).
+- Insert a [`CreateMessage`] operator to construct a [`HarpMessage`] command to send to the device and configure these properties:
+    - `Payload` - Select [`PlaySoundOrFrequencyPayload`] from the property dropdown menu.
+    - `PlaySoundOrFrequency` - Set this to the index of the sound you want to play from the `SoundCard` onboard memory (2-31).
 - Insert a [`MulticastSubject`] operator to send [`HarpMessage`] commands to named subjects, and configure the `Name` property to `SoundCard Commands`.
 
 Run the workflow and press the <kbd>A</kbd> key to play the sound. Sound duration is determined by the length of the stored waveform.
