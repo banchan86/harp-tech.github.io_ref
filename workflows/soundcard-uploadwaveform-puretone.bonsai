@@ -15,12 +15,12 @@
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="dsp:FunctionGenerator">
-          <dsp:BufferLength>96000</dsp:BufferLength>
-          <dsp:Frequency>5000</dsp:Frequency>
+          <dsp:BufferLength>192000</dsp:BufferLength>
+          <dsp:Frequency>2000</dsp:Frequency>
           <dsp:Waveform>Sine</dsp:Waveform>
           <dsp:SampleRate>96000</dsp:SampleRate>
           <dsp:Depth>S32</dsp:Depth>
-          <dsp:Amplitude>0</dsp:Amplitude>
+          <dsp:Amplitude>2147483647</dsp:Amplitude>
           <dsp:Offset>0</dsp:Offset>
           <dsp:Phase>0</dsp:Phase>
         </Combinator>
@@ -29,7 +29,7 @@
         <Combinator xsi:type="p1:UpdateSoundWaveform">
           <p1:DeviceIndex xsi:nil="true" />
           <p1:SoundIndex>3</p1:SoundIndex>
-          <p1:SoundName>Bonsai-5hz</p1:SoundName>
+          <p1:SoundName>Bonsai-2hz</p1:SoundName>
           <p1:SampleRate>SampleRate96000Hz</p1:SampleRate>
         </Combinator>
       </Expression>

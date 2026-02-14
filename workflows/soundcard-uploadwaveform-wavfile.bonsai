@@ -16,9 +16,9 @@
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="al:AudioReader">
-          <al:FileName>samples\audiocheck.net_hdchirp_96k_-3dBFS_lin_mono_16bit.wav</al:FileName>
+          <al:FileName>sample.wav</al:FileName>
           <al:BufferLength>0</al:BufferLength>
-          <al:SampleRate>96000</al:SampleRate>
+          <al:SampleRate>0</al:SampleRate>
         </Combinator>
       </Expression>
       <Expression xsi:type="Combinator">

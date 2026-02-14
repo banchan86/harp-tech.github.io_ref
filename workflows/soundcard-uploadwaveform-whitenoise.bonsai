@@ -10,9 +10,9 @@
   <Workflow>
     <Nodes>
       <Expression xsi:type="Combinator">
-        <Combinator xsi:type="p1:CreateContinuousUniform">
-          <p1:Lower>-1</p1:Lower>
-          <p1:Upper>1</p1:Upper>
+        <Combinator xsi:type="p1:CreateDiscreteUniform">
+          <p1:Lower>-2147483646</p1:Lower>
+          <p1:Upper>2147483646</p1:Upper>
         </Combinator>
       </Expression>
       <Expression xsi:type="Combinator">
