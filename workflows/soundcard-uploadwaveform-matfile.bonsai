@@ -17,7 +17,7 @@
         <Combinator xsi:type="dsp:MatrixReader">
           <dsp:Path>sample.mat</dsp:Path>
           <dsp:Offset>0</dsp:Offset>
-          <dsp:SampleRate>96000</dsp:SampleRate>
+          <dsp:SampleRate>0</dsp:SampleRate>
           <dsp:ChannelCount>1</dsp:ChannelCount>
           <dsp:BufferLength>0</dsp:BufferLength>
           <dsp:Depth>S32</dsp:Depth>

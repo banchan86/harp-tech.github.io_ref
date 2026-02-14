@@ -7,6 +7,7 @@ The `Harp.SoundCard` Bonsai package supports preload and update of sound wavefor
 - Install the following packages from the Bonsai [package manager](https://bonsai-rx.org/docs/articles/packages.html):
    - `Bonsai.WindowsInput`
    - `Bonsai.Dsp`
+   - `Bonsai.Dsp.Design`
    - `Bonsai.Audio`
    - `Bonsai.Numerics`
 
@@ -85,7 +86,7 @@ Waveforms can be loaded from uncompressed WAV files, but will require bit depth 
 
 - Insert a [`KeyDown`] source and set the `Filter` property to `A`.
 - Insert an [`AudioReader`] source and configure the following properties:
-   - `BufferLength` - Set this to 0 to load the entire file into a single buffer
+   - `BufferLength` - Set this to 0 to load the entire file into a single buffer (the `SampleRate` property is ignored in this instance).
    - `FileName` - Set this to the file path.
 - Insert a [`ConvertScale`] transform and configure the following properties:
    - `Depth` - Set this to `S32`.
@@ -107,7 +108,7 @@ Waveforms can also be loaded from raw binary matrix files (`*.mat`).
 
 - Insert a [`KeyDown`] source and set the `Filter` property to `A`.
 - Insert a [`MatrixReader`] source and configure the following properties:
-   - `BufferLength` - Set this to 0 to load the entire file into a single buffer.
+   - `BufferLength` - Set this to 0 to load the entire file into a single buffer (the `SampleRate` property is ignored in this instance).
    - `ChannelCount` - Set this to the number of channels in the file (1 for mono or 2 for stereo).
    - `Depth` - Set this to the bit depth of the input file (e.g. `S32`). 
    - `Layout` - Set this to `RowMajor`.
