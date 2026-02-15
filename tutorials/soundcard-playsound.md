@@ -25,7 +25,7 @@ Set up the standard Harp [device pattern](../articles/operators.md#device-patter
    - Name the generated [``BehaviourSubject`1``] [source subject](https://bonsai-rx.org/docs/articles/subjects.html#source-subjects) `SoundCard Commands`. 
    - Connect it as input to the [`Device`] operator.
 
-### Exercise 1 - Play sound index
+## Exercise 1 - Play sound index
 
 Sounds can be played from the `SoundCard` onboard memory by using the [`PlaySoundOrFrequency`] register.
 
@@ -54,7 +54,7 @@ You can replace [`KeyDown`] with other operators to trigger sound playback on ot
 > [!TIP]
 > The `SubscribeWhen` > `SoundCard Events` pattern is useful for ensuring that [`HarpMessage`] commands are only sent after the [`Device`] has been initialized. It relies on the `DumpRegisters` property being set to `True` in [`Device`]. Use it when needed, for instance, if sounds are being played at the start of the workflow.
 
-### Exercise 2 - Play pure tone
+## Exercise 2 - Play pure tone
 
 The [`PlaySoundOrFrequency`] register can also be used to play pure tones using the internal sine wave generator.
 
@@ -77,7 +77,7 @@ Run the workflow, press the <kbd>A</kbd> key to play the sound, and press the <k
 > [!WARNING]
 > The [`Stop`] register can only be used to stop playback from the internal sine wave generator, not sounds from the onboard memory.
 
-### Exercise 3 - Lower sound playback volume
+## Exercise 3 - Lower sound playback volume
 
 The [`PlaySoundOrFrequency`] register plays the sound at the amplitude of the stored waveform or at maximum amplitude for pure tones. To lower the volume, use the [`AttenuationAndPlaySoundOrFreq`] register instead to set the attenuation in 0.1 dB steps.
 
@@ -98,7 +98,7 @@ Run the workflow and press the <kbd>A</kbd> key to play the sound at reduced vol
 > [!TIP]
 > Pure tone playback must be stopped explicitly via the [`Stop`] register.
 
-### Exercise 4 - Trigger sound index playback with digital inputs
+## Exercise 4 - Trigger sound index playback with digital inputs
 
 The `SoundCard` also features digital input channels that can be configured to trigger sound index playback.
 
