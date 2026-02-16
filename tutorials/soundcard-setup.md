@@ -6,7 +6,7 @@ The [Harp SoundCard](https://github.com/harp-tech/device.soundcard) is a high-pe
 
 ## Installation
 
-- Install the [FTDI driver](https://bitbucket.org/fchampalimaud/downloads/downloads/UsbDriver-2.12.26.zip).
+- Install the [FTDI D2XX driver](https://ftdichip.com/drivers/d2xx-drivers/).
 - Connect both `SoundCard` USB cables to the computer.
 - Install the WinUSB driver:
    - Download and launch [Zadig](https://zadig.akeo.ie/).
