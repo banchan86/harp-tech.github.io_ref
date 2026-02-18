@@ -36,7 +36,7 @@ Read the [`AccumulatedSteps`] and display it in a visualizer:
 
 ## Exercise 1: Set acceleration profile
 
-Motor motion is driven by a series of step pulses. Speed can be controlled by specifying the interval between steps (in μs). For any given movement, the acceleration profile is defined by three parameters:
+Motor motion is driven by a series of step pulses and speed can be controlled by specifying the interval between steps (in μs). For any given movement, the acceleration profile is defined by three parameters:
 
 - the initial/final step interval
 - the target step interval at nominal speed
@@ -92,6 +92,25 @@ Run the workflow and press <kbd>A</kbd> to move the motor forward and <kbd>S</kb
 > [!TIP]
 > To move multiple motors simultaneously, use the [`MoveRelativePayload`].
 
+## Exercise 3: Move to absolute step position
+
+The [`MoveAbsolute`] register moves the motor to an absolute step position based on the [`AccumulatedSteps`] counter.
+
+:::workflow
+![StepperDriver Move Absolute](../workflows/stepperdriver-controlmotor-moveabsolute.bonsai)
+:::
+
+- Insert a [`KeyDown`] source and set the `Filter` property to `D`.
+- Insert a [`CreateMessage`] operator and configure these properties:
+   - `Payload` - Set it to [`Motor1MoveAbsolutePayload`].
+   - `Motor1MoveAbsolute` - Set this to the target step position (e.g. 2000).
+- Insert a [`MulticastSubject`] operator named `StepperDriver Commands`.
+
+Run the workflow and press <kbd>D</kbd> to move the motor to the target position. Observe the accumulated steps in the visualizer to confirm the motor reaches the specified position.
+
+> [!TIP]
+> To move multiple motors simultaneously, use the [`MoveAbsolutePayload`].
+
 <!--Reference Style Links -->
 [`AccumulatedSteps`]: xref:Harp.StepperDriver.AccumulatedSteps
 [`AccumulatedStepsSamplingRatePayload`]: xref:Harp.StepperDriver.CreateAccumulatedStepsSamplingRatePayload
@@ -103,6 +122,9 @@ Run the workflow and press <kbd>A</kbd> to move the motor forward and <kbd>S</kb
 [`Merge`]: xref:Bonsai.Reactive.Merge
 [`MoveRelative`]: xref:Harp.StepperDriver.MoveRelative
 [`MoveRelativePayload`]: xref:Harp.StepperDriver.CreateMoveRelativePayload
+[`MoveAbsolute`]: xref:Harp.StepperDriver.MoveAbsolute
+[`MoveAbsolutePayload`]: xref:Harp.StepperDriver.CreateMoveAbsolutePayload
+[`Motor1MoveAbsolutePayload`]: xref:Harp.StepperDriver.CreateMotor1MoveAbsolutePayload
 [`Motor1MoveRelativePayload`]: xref:Harp.StepperDriver.CreateMotor1MoveRelativePayload
 [`Motor1StepAccelerationIntervalPayload`]: xref:Harp.StepperDriver.CreateMotor1StepAccelerationIntervalPayload
 [`Motor1MaximumStepIntervalPayload`]: xref:Harp.StepperDriver.CreateMotor1MaximumStepIntervalPayload
