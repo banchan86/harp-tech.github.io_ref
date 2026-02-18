@@ -5,3 +5,4 @@
 - name: Harp StepperDriver
 - href: stepperdriver-setup.md
 - href: stepperdriver-configuration.md
+- href: stepperdriver-controlmotor.md
