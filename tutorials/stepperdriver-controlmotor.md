@@ -63,7 +63,7 @@ Run the workflow and press the <kbd>3</kbd> key to set the acceleration profile.
 
 ## Exercise 2: Move relative steps
 
-The move relative command moves the motor by a specified number of steps from its current position. Positive values move in one direction, negative values in the other.
+The [`MoveRelative`] register moves the motor by a specified number of steps from its current position. Positive values move in one direction, negative values in the other.
 
 :::workflow
 ![StepperDriver Move Relative](../workflows/stepperdriver-controlmotor-moverelative.bonsai)
@@ -87,7 +87,10 @@ To move the motor in the negative direction, set up a separate pipeline:
 
 Run the workflow and press <kbd>A</kbd> to move the motor forward and <kbd>S</kbd> to move it back. Observe the accumulated steps in the visualizer to track the motor's position. 
 
-**Optional**: Change the acceleration profile in the previous exercise (e.g. increase the initial and target step intervals). Rerun the exercise. What do you observe?
+**Optional**: Change the acceleration profile in the previous exercise (e.g. increase the initial and target step interval). Rerun the exercise. What do you observe?
+
+> [!TIP]
+> To move multiple motors simultaneously, use the [`MoveRelativePayload`].
 
 <!--Reference Style Links -->
 [`AccumulatedSteps`]: xref:Harp.StepperDriver.AccumulatedSteps
@@ -98,6 +101,8 @@ Run the workflow and press <kbd>A</kbd> to move the motor forward and <kbd>S</kb
 [`HarpMessage`]: xref:Bonsai.Harp.HarpMessage
 [`KeyDown`]: xref:Bonsai.Windows.Input.KeyDown
 [`Merge`]: xref:Bonsai.Reactive.Merge
+[`MoveRelative`]: xref:Harp.StepperDriver.MoveRelative
+[`MoveRelativePayload`]: xref:Harp.StepperDriver.CreateMoveRelativePayload
 [`Motor1MoveRelativePayload`]: xref:Harp.StepperDriver.CreateMotor1MoveRelativePayload
 [`Motor1StepAccelerationIntervalPayload`]: xref:Harp.StepperDriver.CreateMotor1StepAccelerationIntervalPayload
 [`Motor1MaximumStepIntervalPayload`]: xref:Harp.StepperDriver.CreateMotor1MaximumStepIntervalPayload
