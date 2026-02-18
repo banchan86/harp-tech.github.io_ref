@@ -111,7 +111,34 @@ Run the workflow and press <kbd>D</kbd> to move the motor to the target position
 > [!TIP]
 > To move multiple motors simultaneously, use the [`MoveAbsolutePayload`].
 
+## Exercise 4: Set position limits
 
+Position limits restrict the range of motion by defining a minimum and maximum step position based on the [`AccumulatedSteps`] counter. The motor will stop automatically if it reaches either limit.
+
+:::workflow
+![StepperDriver Position Limits](../workflows/stepperdriver-controlmotor-positionlimits.bonsai)
+:::
+
+Set the minimum position limit:
+
+- Insert a [`KeyDown`] source and set the `Filter` property to `4`.
+- Insert a [`CreateMessage`] operator and configure these properties:
+   - `Payload` - Select [`Motor1MinPositionPayload`].
+   - `Motor1MinPosition` - Set the minimum step position (e.g. 1000).
+- Insert a [`MulticastSubject`] operator named `StepperDriver Commands`.
+
+Set the maximum position limit in a separate pipeline:
+
+- Insert a [`KeyDown`] source and set the `Filter` property to `5`.
+- Insert a [`CreateMessage`] operator and configure these properties:
+   - `Payload` - Select [`Motor1MaxPositionPayload`].
+   - `Motor1MaxPosition` - Set the maximum step position (e.g. 4000).
+- Insert a [`MulticastSubject`] operator named `StepperDriver Commands`.
+
+Run the workflow and press <kbd>4</kbd> to set the minimum limit and <kbd>5</kbd> to set the maximum limit. Use the move commands from the previous exercises to verify that the motor stops at each limit.
+
+> [!TIP]
+> To set position limits for all motors simultaneously, use the [`MinPositionPayload`] and [`MaxPositionPayload`].
 
 <!--Reference Style Links -->
 [`AccumulatedSteps`]: xref:Harp.StepperDriver.AccumulatedSteps
@@ -126,11 +153,15 @@ Run the workflow and press <kbd>D</kbd> to move the motor to the target position
 [`MoveRelativePayload`]: xref:Harp.StepperDriver.CreateMoveRelativePayload
 [`MoveAbsolute`]: xref:Harp.StepperDriver.MoveAbsolute
 [`MoveAbsolutePayload`]: xref:Harp.StepperDriver.CreateMoveAbsolutePayload
+[`MaxPositionPayload`]: xref:Harp.StepperDriver.CreateMaxPositionPayload
+[`MinPositionPayload`]: xref:Harp.StepperDriver.CreateMinPositionPayload
+[`Motor1MaxPositionPayload`]: xref:Harp.StepperDriver.CreateMotor1MaxPositionPayload
+[`Motor1MinPositionPayload`]: xref:Harp.StepperDriver.CreateMotor1MinPositionPayload
 [`Motor1MoveAbsolutePayload`]: xref:Harp.StepperDriver.CreateMotor1MoveAbsolutePayload
 [`Motor1MoveRelativePayload`]: xref:Harp.StepperDriver.CreateMotor1MoveRelativePayload
 [`Motor1StepAccelerationIntervalPayload`]: xref:Harp.StepperDriver.CreateMotor1StepAccelerationIntervalPayload
 [`Motor1MaximumStepIntervalPayload`]: xref:Harp.StepperDriver.CreateMotor1MaximumStepIntervalPayload
-[`Motor1Motor1StepInterval`]: xref:Harp.StepperDriver.CreateMotor1StepIntervalPayload
+[`Motor1Motor1StepIntervalPayload`]: xref:Harp.StepperDriver.CreateMotor1StepIntervalPayload
 [`MulticastSubject`]: xref:Bonsai.Expressions.MulticastSubject
 [`Parse`]: xref:Harp.StepperDriver.Parse
 [`PublishSubject`]: xref:Bonsai.Reactive.PublishSubject
