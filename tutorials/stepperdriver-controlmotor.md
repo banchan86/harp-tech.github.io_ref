@@ -36,7 +36,7 @@ Read the [`AccumulatedSteps`] and display it in a visualizer:
 
 ## Exercise 1: Set acceleration profile
 
-Motor motion is driven by a series of step pulses and speed can be controlled by specifying the interval between steps (in μs). For any given movement, the acceleration profile is defined by three parameters:
+Motor motion is driven by a series of step pulses, and speed can be controlled by specifying the interval between steps (in μs). The acceleration profile is defined by three parameters:
 
 - the initial/final step interval
 - the target step interval at nominal speed
@@ -59,11 +59,11 @@ Motor motion is driven by a series of step pulses and speed can be controlled by
 - Combine the three messages with a [`Merge`] combinator.
 - Insert a [`MulticastSubject`] operator named `StepperDriver Commands`.
 
-Run the workflow and press the <kbd>3</kbd> key to set the acceleration profile. You can also adjust the properties, and press the <kbd>3</kbd> key to update the acceleration profile while the workflow is running. This allows you to test different speeds with the movement commands.
+Run the workflow and press the <kbd>3</kbd> key to set the acceleration profile. You can also adjust the properties, and press the <kbd>3</kbd> key to update the acceleration profile while the workflow is running. This allows you to test different speeds with the move commands.
 
 ## Exercise 2: Move relative steps
 
-The [`MoveRelative`] register moves the motor by a specified number of steps from its current position. Positive values move in one direction, negative values in the other.
+The [`MoveRelative`] register moves the motor by a specified number of steps from its current position.
 
 :::workflow
 ![StepperDriver Move Relative](../workflows/stepperdriver-controlmotor-moverelative.bonsai)
@@ -110,6 +110,8 @@ Run the workflow and press <kbd>D</kbd> to move the motor to the target position
 
 > [!TIP]
 > To move multiple motors simultaneously, use the [`MoveAbsolutePayload`].
+
+
 
 <!--Reference Style Links -->
 [`AccumulatedSteps`]: xref:Harp.StepperDriver.AccumulatedSteps
