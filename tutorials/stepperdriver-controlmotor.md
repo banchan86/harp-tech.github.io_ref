@@ -163,6 +163,28 @@ Run the workflow and use the move commands from the previous exercises to set th
 > [!TIP]
 > To target multiple motors, enter their names, separated by a comma, for the `StopMotors` property (e.g. `Motor0`, `Motor1`).
 
+## Exercise 6: Move continuously
+
+The [`StepRelative`] register ignores the acceleration profile and moves the motor continuously at a fixed speed determined by the step interval and a direction determined by the sign of the value. 
+
+> [!WARNING]
+> Ensure that position limits or the stop command are in place before trying this exercise.
+
+:::workflow
+![StepperDriver Move Continuously](../workflows/stepperdriver-controlmotor-movecontinuous.bonsai)
+:::
+
+- Insert a [`KeyDown`] source and set the `Filter` property to `G`.
+- Insert a [`CreateMessage`] operator and configure these properties:
+   - `Payload` - Select [`Motor1StepRelativePayload`].
+   - `Motor1` - Set the step interval and direction (e.g. 1000 for forward).
+- Insert a [`MulticastSubject`] operator named `StepperDriver Commands`.
+
+Run the workflow and press <kbd>G</kbd> to start continuous motor motion. Press <kbd>F</kbd> from the previous exercise to stop the motor.
+
+> [!TIP]
+> To move multiple motors simultaneously, use the [`StepRelativePayload`].
+
 <!--Reference Style Links -->
 [`AccumulatedSteps`]: xref:Harp.StepperDriver.AccumulatedSteps
 [`AccumulatedStepsSamplingRatePayload`]: xref:Harp.StepperDriver.CreateAccumulatedStepsSamplingRatePayload
@@ -185,11 +207,14 @@ Run the workflow and use the move commands from the previous exercises to set th
 [`Motor1MoveAbsolutePayload`]: xref:Harp.StepperDriver.CreateMotor1MoveAbsolutePayload
 [`Motor1MoveRelativePayload`]: xref:Harp.StepperDriver.CreateMotor1MoveRelativePayload
 [`Motor1StepAccelerationIntervalPayload`]: xref:Harp.StepperDriver.CreateMotor1StepAccelerationIntervalPayload
+[`Motor1StepRelativePayload`]: xref:Harp.StepperDriver.CreateMotor1StepRelativePayload
 [`Motor1MaximumStepIntervalPayload`]: xref:Harp.StepperDriver.CreateMotor1MaximumStepIntervalPayload
 [`Motor1StepIntervalPayload`]: xref:Harp.StepperDriver.CreateMotor1StepIntervalPayload
 [`MulticastSubject`]: xref:Bonsai.Expressions.MulticastSubject
 [`Parse`]: xref:Harp.StepperDriver.Parse
 [`PublishSubject`]: xref:Bonsai.Reactive.PublishSubject
+[`StepRelative`]: xref:Harp.StepperDriver.StepRelative
+[`StepRelativePayload`]: xref:Harp.StepperDriver.StepRelativePayload
 [`SubscribeSubject`]: xref:Bonsai.Expressions.SubscribeSubject
 [`Take`]: xref:Bonsai.Reactive.Take
 [`Timer`]: xref:Bonsai.Reactive.Timer
