@@ -10,7 +10,7 @@ The follow exercises will demonstrate how to control motor speed and rotational 
 - Install the `Bonsai.Windows.Input` package from the Bonsai [package manager](https://bonsai-rx.org/docs/articles/packages.html).
 - Connect a stepper motor to the `Stepper 1` output on the `StepperDriver`, set up the [device pattern](./stepperdriver-configuration.md#device-pattern), [configure](./stepperdriver-configuration.md) the device, and [enable](./stepperdriver-configuration.md#enable-and-disable-motors) the `Motor1` stepper driver.
 
-## Position visualizer
+## Visualize position
 
 For these exercises, it helps to track the rotational position of the motor. The `StepperDriver` can broadcast a stream of [`AccumulatedSteps`] events, which can be displayed in a visualizer for this purpose.
 
@@ -27,7 +27,7 @@ Enable the [`AccumulatedSteps`] event register and configure the dispatch rate:
    - `AccumulatedStepsSamplingRate` - Set the desired sampling rate (e.g. `Rate10Hz` for coarse movements).
 - Insert a [`MulticastSubject`] operator named `StepperDriver Commands`.
 
-Read the [`AccumulatedSteps`] and display it in a visualizer:
+Extract the [`AccumulatedSteps`] events and format it for visualizer display:
 
 - Insert a [`SubscribeSubject`] operator named `StepperDriver Events`.
 - Insert a [`Parse`] operator and set the `Register` property to [`AccumulatedSteps`].
@@ -144,7 +144,7 @@ You can also adjust the properties, and press the <kbd>4</kbd> and <kbd>5</kbd> 
 > [!TIP]
 > To set position limits for all motors, use the [`MinPositionPayload`] and [`MaxPositionPayload`].
 
-## Exercise 5: Stop motors
+## Exercise 6: Stop motors
 
 The [`StopMotors`] register immediately halts motors regardless of their current move command and can be used as an emergency stop.
 
@@ -163,7 +163,7 @@ Run the workflow and use the move commands from the previous exercises to set th
 > [!TIP]
 > To target multiple motors, enter their names, separated by a comma, for the `StopMotors` property (e.g. `Motor0`, `Motor1`).
 
-## Exercise 6: Move continuously
+## Exercise 7: Move continuously
 
 The [`StepRelative`] register ignores the acceleration profile and moves the motor continuously at a fixed speed determined by the step interval and a direction determined by the sign of the value. 
 
@@ -185,8 +185,28 @@ Run the workflow and press <kbd>G</kbd> to start continuous motor motion. Press 
 > [!TIP]
 > To move multiple motors simultaneously, use the [`StepRelativePayload`].
 
+## Exercise 7: Reset position
+
+Writing new values to the [`AccumulatedSteps`] register resets the position tracking to a new origin.
+
+:::workflow
+![StepperDriver Reset Position](../workflows/stepperdriver-controlmotor-resetposition.bonsai)
+:::
+
+- Insert a [`KeyDown`] source and set the `Filter` property to `6`.
+- Insert a [`CreateMessage`] operator and configure these properties:
+   - `Payload` - Select [`AccumulatedStepsPayload`].
+   - `Motor1` - Set to 0.
+- Insert a [`MulticastSubject`] operator named `StepperDriver Commands`.
+
+Run the workflow and press <kbd>6</kbd> to reset the accumulated steps. Observe the accumulated steps in the visualizer to verify that the position has been reset.
+
+> [!WARNING]
+> Note that any absolute position moves and position limits set in the previous exercises will now refer to a different physical location.
+
 <!--Reference Style Links -->
 [`AccumulatedSteps`]: xref:Harp.StepperDriver.AccumulatedSteps
+[`AccumulatedStepsPayload`]: xref:Harp.StepperDriver.CreateAccumulatedStepsPayload
 [`AccumulatedStepsSamplingRatePayload`]: xref:Harp.StepperDriver.CreateAccumulatedStepsSamplingRatePayload
 [``BehaviourSubject`1``]: xref:Bonsai.Reactive.BehaviorSubject
 [`CreateMessage`]: xref:Harp.StepperDriver.CreateMessage
