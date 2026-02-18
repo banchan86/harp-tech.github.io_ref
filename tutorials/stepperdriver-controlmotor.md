@@ -59,9 +59,9 @@ Motor motion is driven by a series of step pulses, and speed can be controlled b
 - Combine the three messages with a [`Merge`] combinator.
 - Insert a [`MulticastSubject`] operator named `StepperDriver Commands`.
 
-Run the workflow and press the <kbd>3</kbd> key to set the acceleration profile. 
+Run the workflow and press <kbd>3</kbd> to set the acceleration profile. 
 
-You can also adjust the properties, and press the <kbd>3</kbd> key to update the acceleration profile while the workflow is running. This allows you to test different speeds with the move commands.
+You can also adjust the properties, and press <kbd>3</kbd> to update the acceleration profile while the workflow is running. This allows you to test different speeds with the move commands.
 
 ## Exercise 2: Move relative steps
 
@@ -139,10 +139,29 @@ Set the maximum position limit in a separate pipeline:
 
 Run the workflow and press <kbd>4</kbd> to set the minimum limit and <kbd>5</kbd> to set the maximum limit. Use the move commands from the previous exercises to verify that the motor stops at each limit.
 
-You can also adjust the properties, and press the <kbd>4</kbd> and <kbd>5</kbd> key to update the position limits while the workflow is running.
+You can also adjust the properties, and press the <kbd>4</kbd> and <kbd>5</kbd> keys to update the position limits while the workflow is running.
 
 > [!TIP]
 > To set position limits for all motors, use the [`MinPositionPayload`] and [`MaxPositionPayload`].
+
+## Exercise 5: Stop motors
+
+The [`StopMotors`] register immediately halts motors regardless of their current move command and can be used as an emergency stop.
+
+:::workflow
+![StepperDriver Stop Motors](../workflows/stepperdriver-controlmotor-stopmotors.bonsai)
+:::
+
+- Insert a [`KeyDown`] source and set the `Filter` property to `F`.
+- Insert a [`CreateMessage`] operator and configure these properties:
+   - `Payload` - Select [`StopMotorsPayload`].
+   - `StopMotors` - Select the motor to stop (e.g. `Motor1`).
+- Insert a [`MulticastSubject`] operator named `StepperDriver Commands`.
+
+Run the workflow and use the move commands from the previous exercises to set the motor in motion. Press <kbd>F</kbd> to immediately stop the motor.
+
+> [!TIP]
+> To target multiple motors, enter their names, separated by a comma, for the `StopMotors` property (e.g. `Motor0`, `Motor1`).
 
 <!--Reference Style Links -->
 [`AccumulatedSteps`]: xref:Harp.StepperDriver.AccumulatedSteps
@@ -158,6 +177,8 @@ You can also adjust the properties, and press the <kbd>4</kbd> and <kbd>5</kbd> 
 [`MoveAbsolute`]: xref:Harp.StepperDriver.MoveAbsolute
 [`MoveAbsolutePayload`]: xref:Harp.StepperDriver.CreateMoveAbsolutePayload
 [`MaxPositionPayload`]: xref:Harp.StepperDriver.CreateMaxPositionPayload
+[`StopMotors`]: xref:Harp.StepperDriver.StopMotors
+[`StopMotorsPayload`]: xref:Harp.StepperDriver.CreateStopMotorsPayload
 [`MinPositionPayload`]: xref:Harp.StepperDriver.CreateMinPositionPayload
 [`Motor1MaxPositionPayload`]: xref:Harp.StepperDriver.CreateMotor1MaxPositionPayload
 [`Motor1MinPositionPayload`]: xref:Harp.StepperDriver.CreateMotor1MinPositionPayload
