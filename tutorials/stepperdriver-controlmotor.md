@@ -59,7 +59,9 @@ Motor motion is driven by a series of step pulses, and speed can be controlled b
 - Combine the three messages with a [`Merge`] combinator.
 - Insert a [`MulticastSubject`] operator named `StepperDriver Commands`.
 
-Run the workflow and press the <kbd>3</kbd> key to set the acceleration profile. You can also adjust the properties, and press the <kbd>3</kbd> key to update the acceleration profile while the workflow is running. This allows you to test different speeds with the move commands.
+Run the workflow and press the <kbd>3</kbd> key to set the acceleration profile. 
+
+You can also adjust the properties, and press the <kbd>3</kbd> key to update the acceleration profile while the workflow is running. This allows you to test different speeds with the move commands.
 
 ## Exercise 2: Move relative steps
 
@@ -116,7 +118,7 @@ Run the workflow and press <kbd>D</kbd> to move the motor to the target position
 Position limits restrict the range of motion by defining a minimum and maximum step position based on the [`AccumulatedSteps`] counter. The motor will stop automatically if it reaches either limit.
 
 :::workflow
-![StepperDriver Position Limits](../workflows/stepperdriver-controlmotor-positionlimits.bonsai)
+![StepperDriver Position Limit](../workflows/stepperdriver-controlmotor-positionlimit.bonsai)
 :::
 
 Set the minimum position limit:
@@ -136,6 +138,8 @@ Set the maximum position limit in a separate pipeline:
 - Insert a [`MulticastSubject`] operator named `StepperDriver Commands`.
 
 Run the workflow and press <kbd>4</kbd> to set the minimum limit and <kbd>5</kbd> to set the maximum limit. Use the move commands from the previous exercises to verify that the motor stops at each limit.
+
+You can also adjust the properties, and press the <kbd>4</kbd> and <kbd>5</kbd> key to update the position limits while the workflow is running.
 
 > [!TIP]
 > To set position limits for all motors, use the [`MinPositionPayload`] and [`MaxPositionPayload`].
@@ -161,7 +165,7 @@ Run the workflow and press <kbd>4</kbd> to set the minimum limit and <kbd>5</kbd
 [`Motor1MoveRelativePayload`]: xref:Harp.StepperDriver.CreateMotor1MoveRelativePayload
 [`Motor1StepAccelerationIntervalPayload`]: xref:Harp.StepperDriver.CreateMotor1StepAccelerationIntervalPayload
 [`Motor1MaximumStepIntervalPayload`]: xref:Harp.StepperDriver.CreateMotor1MaximumStepIntervalPayload
-[`Motor1Motor1StepIntervalPayload`]: xref:Harp.StepperDriver.CreateMotor1StepIntervalPayload
+[`Motor1StepIntervalPayload`]: xref:Harp.StepperDriver.CreateMotor1StepIntervalPayload
 [`MulticastSubject`]: xref:Bonsai.Expressions.MulticastSubject
 [`Parse`]: xref:Harp.StepperDriver.Parse
 [`PublishSubject`]: xref:Bonsai.Reactive.PublishSubject
