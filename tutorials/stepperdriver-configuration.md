@@ -1,4 +1,4 @@
-# Configuration
+# Configure Driver
 
 Configuration parameters must be set for the [Harp StepperDriver](https://github.com/harp-tech/device.stepperdriver) before it can be used to drive stepper motors. 
 
@@ -8,7 +8,7 @@ Configuration parameters must be set for the [Harp StepperDriver](https://github
 ## Prerequisites
 
 - Install the `Bonsai.Windows.Input` package from the Bonsai [package manager](https://bonsai-rx.org/docs/articles/packages.html).
-- The steps listed below demonstrate configuration of a single stepper motor connected to the `Motor1` output on the `StepperDriver`. Adjust the relevant properties for your specific configuration.
+- The steps listed below demonstrate driver configuration for a single stepper motor connected to the `Motor1` output on the `StepperDriver`. Adjust the relevant properties for your specific configuration.
 
 ## Device pattern
 
@@ -46,7 +46,7 @@ The `StepperDriver` includes an external interlock terminal (labelled `Enable` o
 
 ## Configure microstep resolution
 
-The microstep resolution determines the size of each step, and directly affects the speed and distance travelled by the movement commands. It must be set individually for each motor. Values range from `Microstep8` (coarsest) to `Microstep64` (finest).
+The microstep resolution determines the size of each step, and directly affects the speed and distance travelled by the movement commands. It must be set individually for each motor driver. Values range from `Microstep8` (coarsest) to `Microstep64` (finest).
 
 :::workflow
 ![StepperDriver Microstep Resolution](../workflows/stepperdriver-configuration-microstepresolution.bonsai)
@@ -61,7 +61,7 @@ The microstep resolution determines the size of each step, and directly affects 
 
 ## Configure operation parameters
 
-Other operation parameters to be set include the operation mode of the motor, maximum run current, as well as the hold current.
+Other operation parameters to be set include the operation mode of the motor driver, maximum run current, as well as the hold current.
 
 :::workflow
 ![StepperDriver Operation Parameters](../workflows/stepperdriver-configuration-operationparameters.bonsai)
