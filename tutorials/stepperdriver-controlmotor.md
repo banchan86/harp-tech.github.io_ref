@@ -138,7 +138,7 @@ Set the maximum position limit in a separate pipeline:
 Run the workflow and press <kbd>4</kbd> to set the minimum limit and <kbd>5</kbd> to set the maximum limit. Use the move commands from the previous exercises to verify that the motor stops at each limit.
 
 > [!TIP]
-> To set position limits for all motors simultaneously, use the [`MinPositionPayload`] and [`MaxPositionPayload`].
+> To set position limits for all motors, use the [`MinPositionPayload`] and [`MaxPositionPayload`].
 
 <!--Reference Style Links -->
 [`AccumulatedSteps`]: xref:Harp.StepperDriver.AccumulatedSteps
