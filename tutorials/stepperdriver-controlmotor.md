@@ -23,8 +23,8 @@ Enable the [`AccumulatedSteps`] event register and configure the dispatch rate:
 - Insert a [`SubscribeSubject`] operator named `StepperDriver Events`.
 - Insert a [`Take`] combinator and set the `Count` property to 1.
 - Insert a [`CreateMessage`] operator and configure these properties: 
-   - `Payload` - Set it to [`AccumulatedStepsSamplingRatePayload`].
-   - `AccumulatedStepsSamplingRate` - Set it to the desired sampling rate (e.g. `Rate10Hz` for coarse movements).
+   - `Payload` - Select [`AccumulatedStepsSamplingRatePayload`].
+   - `AccumulatedStepsSamplingRate` - Set the desired sampling rate (e.g. `Rate10Hz` for coarse movements).
 - Insert a [`MulticastSubject`] operator named `StepperDriver Commands`.
 
 Read the [`AccumulatedSteps`] and display it in a visualizer:
@@ -48,14 +48,14 @@ Motor motion is driven by a series of step pulses, and speed can be controlled b
 
 - Insert a [`KeyDown`] source and set the `Filter` property to `3`. 
 - Insert a [`CreateMessage`] operator and configure these properties:
-   - `Payload` - Set it to [`Motor1MaximumStepIntervalPayload`].
-   - `Motor1MaximumStepInterval` - Set this to the initial/final step interval (e.g. 2000).
+   - `Payload` - Select [`Motor1MaximumStepIntervalPayload`].
+   - `Motor1MaximumStepInterval` - Set the initial/final step interval (e.g. 2000).
 - Insert a [`CreateMessage`] operator on a new branch and configure these properties:
-   - `Payload` - Set it to [`Motor1StepIntervalPayload`].
-   - `Motor1StepInterval` - Set this to the target step interval (e.g. 250).
+   - `Payload` - Select [`Motor1StepIntervalPayload`].
+   - `Motor1StepInterval` - Set the target step interval (e.g. 250).
 - Insert a [`CreateMessage`] operator on a new branch and configure these properties:
-   - `Payload` - Set it to [`Motor1StepAccelerationIntervalPayload`].
-   - `Motor1StepAcceleration` - Set this to the change in step interval (e.g. 10).
+   - `Payload` - Select [`Motor1StepAccelerationIntervalPayload`].
+   - `Motor1StepAcceleration` - Set the change in step interval (e.g. 10).
 - Combine the three messages with a [`Merge`] combinator.
 - Insert a [`MulticastSubject`] operator named `StepperDriver Commands`.
 
@@ -73,16 +73,16 @@ To move the motor in the positive direction:
 
 - Insert a [`KeyDown`] source and set the `Filter` property to `A`.
 - Insert a [`CreateMessage`] operator and configure these properties:
-   - `Payload` - Set it to [`Motor1MoveRelativePayload`].
-   - `Motor1MoveRelative` - Set this to the number of steps to move (e.g. 3000).
+   - `Payload` - Select [`Motor1MoveRelativePayload`].
+   - `Motor1MoveRelative` - Set the number of steps to move (e.g. 3000).
 - Insert a [`MulticastSubject`] operator named `StepperDriver Commands`.
 
 To move the motor in the negative direction, set up a separate pipeline:
 
 - Insert a [`KeyDown`] source and set the `Filter` property to `S`.
 - Insert a [`CreateMessage`] operator and configure these properties:
-   - `Payload` - Set it to [`Motor1MoveRelativePayload`].
-   - `Motor1MoveRelative` - Set this to a negative value (e.g. -3000).
+   - `Payload` - Select [`Motor1MoveRelativePayload`].
+   - `Motor1MoveRelative` - Set to a negative value (e.g. -3000).
 - Insert a [`MulticastSubject`] operator named `StepperDriver Commands`.
 
 Run the workflow and press <kbd>A</kbd> to move the motor forward and <kbd>S</kbd> to move it back. Observe the accumulated steps in the visualizer to track the motor's position. 
@@ -102,8 +102,8 @@ The [`MoveAbsolute`] register moves the motor to an absolute step position based
 
 - Insert a [`KeyDown`] source and set the `Filter` property to `D`.
 - Insert a [`CreateMessage`] operator and configure these properties:
-   - `Payload` - Set it to [`Motor1MoveAbsolutePayload`].
-   - `Motor1MoveAbsolute` - Set this to the target step position (e.g. 2000).
+   - `Payload` - Select [`Motor1MoveAbsolutePayload`].
+   - `Motor1MoveAbsolute` - Set the target step position (e.g. 2000).
 - Insert a [`MulticastSubject`] operator named `StepperDriver Commands`.
 
 Run the workflow and press <kbd>D</kbd> to move the motor to the target position. Observe the accumulated steps in the visualizer to confirm the motor reaches the specified position.
