@@ -2,6 +2,10 @@
 - href: hobgoblin-setup.md
 - href: hobgoblin-acquisition.md
 - href: hobgoblin-reaction.md
+- name: Harp SoundCard
+- href: soundcard-setup.md
+- href: soundcard-playsound.md
+- href: soundcard-uploadwaveform.md
 - name: Harp StepperDriver
 - href: stepperdriver-setup.md
 - href: stepperdriver-configuration.md
