@@ -38,8 +38,7 @@ Waveforms can be generated and uploaded to the `SoundCard` in Bonsai. Optionally
 
 ## Version information
 
-These tutorials were developed and tested with the following versions:
-
-**Hardware**: v2.2
-**Firmware**: v2.2
-**Harp.SoundCard Package**: v0.2
+These tutorials were developed and tested with:
+- **Hardware**: v2.2
+- **Firmware**: v2.2
+- **Harp.SoundCard Package**: v0.2
