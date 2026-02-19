@@ -6,10 +6,9 @@ The [Harp SoundCard](https://github.com/harp-tech/device.soundcard) is a high-pe
 
 ## Installation
 
-- Install the [FTDI D2XX driver](https://ftdichip.com/drivers/d2xx-drivers/).
-- Connect both `SoundCard` USB cables to the computer.
-- Install the WinUSB driver:
+- Install the WinUSB driver if you plan to upload sounds to the onboard memory:
    - Download and launch [Zadig](https://zadig.akeo.ie/).
+   - Connect the USB Micro-B cable to the computer.
    - Select the "Harp Sound Card" from the list. If the device is not available, go to "Options" > "List All Devices".
    - Select the "WinUSB" driver and click "Install Driver".
 - Install [Bonsai](https://bonsai-rx.org/docs/articles/installation.html).
@@ -36,3 +35,11 @@ Waveforms can be generated and uploaded to the `SoundCard` in Bonsai. Optionally
 - Hover over the workflow cell above, click the "Copy" icon in the top right, and paste the workflow into Bonsai.
 - Set the `PortName` property of the [`SoundCard`](xref:Harp.SoundCard.Device) operator to the communications port of the `SoundCard` (e.g. COM7).
 - Run the workflow. If the `SoundCard` is properly connected, you should hear a short tone.
+
+## Version information
+
+These tutorials were developed and tested with the following versions:
+
+**Hardware**: v2.2
+**Firmware**: v2.2
+**Harp.SoundCard Package**: v0.2
