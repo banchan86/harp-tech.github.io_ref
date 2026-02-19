@@ -8,7 +8,7 @@ The follow exercises will demonstrate how to control motor speed and rotational 
 ## Prerequisites
 
 - Install the `Bonsai.Windows.Input` package from the Bonsai [package manager](https://bonsai-rx.org/docs/articles/packages.html).
-- Connect a stepper motor to the `Stepper 1` output on the `StepperDriver`, set up the [device pattern](./stepperdriver-configuration.md#device-pattern), [configure](./stepperdriver-configuration.md) the device, and [enable](./stepperdriver-configuration.md#enable-and-disable-motors) the `Motor1` stepper driver.
+- Connect a stepper motor to the `Stepper 1` output on the `StepperDriver`, set up the [device pattern](./stepperdriver-configuration.md#device-pattern), [configure](./stepperdriver-configuration.md) the device, and [enable](./stepperdriver-configuration.md#enable-and-disable-motor-drivers) the `Motor1` stepper driver.
 
 ## Visualize position
 

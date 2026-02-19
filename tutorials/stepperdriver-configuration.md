@@ -36,9 +36,7 @@ The `StepperDriver` includes an external interlock terminal (labelled `Enable` o
 - Insert a [`Take`] combinator and set the `Count` property to 1.
 - Insert a [`CreateMessage`] operator to construct a [`HarpMessage`] command to send to the device and configure these properties: 
    - `Payload` - Select [`InterlockEnabledPayload`] from the property drop down menu.
-   - `InterlockEnabled` - Select either of these values:
-      - `Open` - to enable the device if the interlock is not in use.
-      - `Closed` - to enable the device with a connected interlock switch.
+   - `InterlockEnabled` - Select `Open` to enable the device if the interlock is not in use, or `Closed` to enable the device with a connected interlock switch.
 - Insert a [`MulticastSubject`] operator to send [`HarpMessage`] commands to named subjects, and configure the `Name` property to `StepperDriver Commands`.
 
 > [!TIP]
@@ -55,7 +53,7 @@ The microstep resolution determines the size of each step, and directly affects 
 - Insert a [`SubscribeSubject`] operator named `StepperDriver Events`.
 - Insert a [`Take`] combinator and set the `Count` property to 1.
 - Insert a [`CreateMessage`] operator and configure these properties: 
-   - `Payload` - Set it to [`Motor1MicrostepResolution`].
+   - `Payload` - Set it to [`Motor1MicrostepResolutionPayload`].
    - `Motor1MicrostepResolution` - Select the desired microstep resolution (e.g. `Microstep8`).
 - Insert a [`MulticastSubject`] operator named `StepperDriver Commands`.
 
@@ -70,13 +68,13 @@ Other operation parameters to be set include the operation mode of the motor dri
 - Insert a [`SubscribeSubject`] operator named `StepperDriver Events`.
 - Insert a [`Take`] combinator and set the `Count` property to 1.
 - Insert a [`CreateMessage`] operator and configure these properties: 
-   - `Payload` - Set it to [`Motor1OperationMode`].
-   - `Motor1OperationMode` - Set it to `QuietMode` for regular operation and `DynamicMode` for quick movements.
+   - `Payload` - Set it to [`Motor1OperationModePayload`].
+   - `Motor1OperationMode` - Set it to `QuietMode` for regular operation and `DynamicMovements` for quick movements.
 - Insert a [`CreateMessage`] operator on another branch, and configure these properties:
-   - `Payload` - Set it to [`Motor1MaximumRunCurrent`].
+   - `Payload` - Set it to [`Motor1MaximumRunCurrentPayload`].
    - `Motor1MaximumRunCurrent` - Set it to match the motor's rated phase current in amps (e.g. 1).
 - Insert a [`CreateMessage`] operator on another branch, and configure these properties:
-   - `Payload` - Set it to [`Motor1HoldCurrentReduction`].
+   - `Payload` - Set it to [`Motor1HoldCurrentReductionPayload`].
    - `Motor1HoldCurrentReduction` - Set it to minimise heat reduction and adjust the holding torque of the motor at rest (e.g. `ReductionTo25Percent` for low holding torque with light external loads). 
 - Insert a [`Merge`] operator to combine all three commands into one [`HarpMessage`] stream.
 - Insert a [`MulticastSubject`] operator named `StepperDriver Commands`.
@@ -121,10 +119,10 @@ Run the workflow and press the <kbd>1</kbd> key to enable the driver and <kbd>2<
 [`InterlockEnabledPayload`]: xref:Harp.StepperDriver.CreateInterlockEnabledPayload
 [`KeyDown`]: xref:Bonsai.Windows.Input.KeyDown
 [`Merge`]: xref:Bonsai.Reactive.Merge
-[`Motor1MaximumRunCurrent`]: xref:Harp.StepperDriver.CreateMotor1MaximumRunCurrentPayload
-[`Motor1HoldCurrentReduction`]: xref:Harp.StepperDriver.CreateMotor1HoldCurrentReductionPayload
-[`Motor1MicrostepResolution`]: xref:Harp.StepperDriver.CreateMotor1MicrostepResolutionPayload
-[`Motor1OperationMode`]: xref:Harp.StepperDriver.CreateMotor1OperationModePayload
+[`Motor1MaximumRunCurrentPayload`]: xref:Harp.StepperDriver.CreateMotor1MaximumRunCurrentPayload
+[`Motor1HoldCurrentReductionPayload`]: xref:Harp.StepperDriver.CreateMotor1HoldCurrentReductionPayload
+[`Motor1MicrostepResolutionPayload`]: xref:Harp.StepperDriver.CreateMotor1MicrostepResolutionPayload
+[`Motor1OperationModePayload`]: xref:Harp.StepperDriver.CreateMotor1OperationModePayload
 [`MulticastSubject`]: xref:Bonsai.Expressions.MulticastSubject
 [`PublishSubject`]: xref:Bonsai.Reactive.PublishSubject
 [`SubscribeSubject`]: xref:Bonsai.Expressions.SubscribeSubject
