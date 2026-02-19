@@ -1,6 +1,6 @@
 # Control Motor
 
-The follow exercises will demonstrate how to control motor speed and rotational position with the [Harp StepperDriver](https://github.com/harp-tech/device.stepperdriver).
+The follow exercises demonstrate how to control motor speed and rotational position with the [Harp StepperDriver](https://github.com/harp-tech/device.stepperdriver).
 
 > [!WARNING]
 > Ensure that you are familiar with the operation of the `StepperDriver` and motors before connecting external loads. Consider using end-of-travel switches in conjunction with a [digital input](xref:Harp.StepperDriver.CreateEnableDigitalInputsPayload) [configuration](xref:Harp.StepperDriver.CreateInput0OpModePayload). Improper use of the `StepperDriver` and motors may result in damage to equipment.
@@ -27,7 +27,7 @@ Enable the [`AccumulatedSteps`] event register and configure the dispatch rate:
    - `AccumulatedStepsSamplingRate` - Set the desired sampling rate (e.g. `Rate10Hz` for coarse movements).
 - Insert a [`MulticastSubject`] operator named `StepperDriver Commands`.
 
-Extract the [`AccumulatedSteps`] events and format it for visualizer display:
+Extract the [`AccumulatedSteps`] events and format them for display in the visualizer:
 
 - Insert a [`SubscribeSubject`] operator named `StepperDriver Events`.
 - Insert a [`Parse`] operator and set the `Register` property to [`AccumulatedSteps`].
@@ -61,7 +61,7 @@ Motor motion is driven by a series of step pulses, and speed can be controlled b
 
 Run the workflow and press <kbd>3</kbd> to set the acceleration profile. 
 
-You can also adjust the properties, and press <kbd>3</kbd> to update the acceleration profile while the workflow is running. This allows you to test different speeds with the move commands.
+While the workflow is running, you can also adjust the properties, and press <kbd>3</kbd> to update the acceleration profile and test different settings.
 
 ## Exercise 2: Move relative steps
 
@@ -87,9 +87,7 @@ To move the motor in the negative direction, set up a separate pipeline:
    - `Motor1MoveRelative` - Set to a negative value (e.g. -3000).
 - Insert a [`MulticastSubject`] operator named `StepperDriver Commands`.
 
-Run the workflow and press <kbd>A</kbd> to move the motor forward and <kbd>S</kbd> to move it back. Observe the accumulated steps in the visualizer to track the motor's position. 
-
-**Optional**: Change the acceleration profile in the previous exercise (e.g. increase the initial and target step interval). Rerun the exercise. What do you observe?
+Run the workflow and press <kbd>A</kbd> to move the motor forward and <kbd>S</kbd> to move it back. Observe the accumulated steps in the visualizer to track the motor's position.
 
 > [!TIP]
 > To move multiple motors simultaneously, use the [`MoveRelativePayload`].
@@ -139,14 +137,14 @@ Set the maximum position limit in a separate pipeline:
 
 Run the workflow and press <kbd>4</kbd> to set the minimum limit and <kbd>5</kbd> to set the maximum limit. Use the move commands from the previous exercises to verify that the motor stops at each limit.
 
-You can also adjust the properties, and press the <kbd>4</kbd> and <kbd>5</kbd> keys to update the position limits while the workflow is running.
+While the workflow is running, you can also adjust the properties and press <kbd>4</kbd> or <kbd>5</kbd> to update the position limits.
 
 > [!TIP]
 > To set position limits for all motors, use the [`MinPositionPayload`] and [`MaxPositionPayload`].
 
-## Exercise 6: Stop motors
+## Exercise 5: Stop motors
 
-The [`StopMotors`] register immediately halts motors regardless of their current move command and can be used as an emergency stop.
+The [`StopMotors`] register immediately halts motors regardless of any current move command and can be used as an emergency stop.
 
 :::workflow
 ![StepperDriver Stop Motors](../workflows/stepperdriver-controlmotor-stopmotors.bonsai)
@@ -163,9 +161,9 @@ Run the workflow and use the move commands from the previous exercises to set th
 > [!TIP]
 > To target multiple motors, enter their names, separated by a comma, for the `StopMotors` property (e.g. `Motor0`, `Motor1`).
 
-## Exercise 7: Move continuously
+## Exercise 6: Move continuously
 
-The [`StepRelative`] register ignores the acceleration profile and moves the motor continuously at a fixed speed determined by the step interval and a direction determined by the sign of the value. 
+The [`StepRelative`] register ignores the acceleration profile and moves the motor continuously at a fixed speed determined by the step interval and a direction indicated by the sign of the value. 
 
 > [!WARNING]
 > Ensure that position limits or the stop command are in place before trying this exercise.
@@ -208,10 +206,7 @@ Run the workflow and press <kbd>6</kbd> to reset the accumulated steps. Observe 
 [`AccumulatedSteps`]: xref:Harp.StepperDriver.AccumulatedSteps
 [`AccumulatedStepsPayload`]: xref:Harp.StepperDriver.CreateAccumulatedStepsPayload
 [`AccumulatedStepsSamplingRatePayload`]: xref:Harp.StepperDriver.CreateAccumulatedStepsSamplingRatePayload
-[``BehaviourSubject`1``]: xref:Bonsai.Reactive.BehaviorSubject
 [`CreateMessage`]: xref:Harp.StepperDriver.CreateMessage
-[`Device`]: xref:Harp.StepperDriver.Device
-[`HarpMessage`]: xref:Bonsai.Harp.HarpMessage
 [`KeyDown`]: xref:Bonsai.Windows.Input.KeyDown
 [`Merge`]: xref:Bonsai.Reactive.Merge
 [`MoveRelative`]: xref:Harp.StepperDriver.MoveRelative
@@ -232,9 +227,8 @@ Run the workflow and press <kbd>6</kbd> to reset the accumulated steps. Observe 
 [`Motor1StepIntervalPayload`]: xref:Harp.StepperDriver.CreateMotor1StepIntervalPayload
 [`MulticastSubject`]: xref:Bonsai.Expressions.MulticastSubject
 [`Parse`]: xref:Harp.StepperDriver.Parse
-[`PublishSubject`]: xref:Bonsai.Reactive.PublishSubject
 [`StepRelative`]: xref:Harp.StepperDriver.StepRelative
-[`StepRelativePayload`]: xref:Harp.StepperDriver.StepRelativePayload
+[`StepRelativePayload`]: xref:Harp.StepperDriver.CreateStepRelativePayload
 [`SubscribeSubject`]: xref:Bonsai.Expressions.SubscribeSubject
 [`Take`]: xref:Bonsai.Reactive.Take
 [`VisualizerWindow`]: xref:Bonsai.Design.VisualizerWindow

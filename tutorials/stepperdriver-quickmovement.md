@@ -3,7 +3,7 @@
 The [Harp StepperDriver](https://github.com/harp-tech/device.stepperdriver) features a special `QuickMovement` mode that can be used for extremely fast movements with low trigger latency.
 
 > [!TIP]
-> [`StepRelative`](./stepperdriver-controlmotor.md#exercise-7-move-continuously) with position limits may be sufficient for some applications requiring fast movements.
+> For some applications, [`StepRelative`](./stepperdriver-controlmotor.md#exercise-7-move-continuously) with position limits configured may be sufficient  requiring fast movements.
 
 ## Prerequisites
 
@@ -34,7 +34,9 @@ The [Harp StepperDriver](https://github.com/harp-tech/device.stepperdriver) feat
 
 ## Exercise 1: Arm QuickMovement 
 
-`QuickMovement` is not yet supported by the `Harp.StepperDriver` Bonsai interface package. Instead, it can be accessed through the generic [`Bonsai.Harp`](../articles/operators.md) interface. With this interface, values for configuration are converted into [`HarpMessage`] commands by using the [`Format (Harp)`] operator. Values have been precalibrated and are defined in millimeters rather than steps. The `QuickMovement` configuration is preloaded into the `StepperDriver` and armed for quick execution.
+`QuickMovement` is not yet supported by the `Harp.StepperDriver` Bonsai interface package. Instead, it can be accessed through the generic [`Bonsai.Harp`](../articles/operators.md) interface. 
+
+With this interface, values for configuration are converted into [`HarpMessage`] commands using the [`Format (Harp)`] operator. Values have been precalibrated and are set in millimeters rather than steps. The configuration is subsequently preloaded into the `StepperDriver` to arm the `QuickMovement` for rapid execution.
 
 :::workflow
 ![StepperDriver QuickMovement Arming](../workflows/stepperdriver-quickmovement-arming.bonsai)
@@ -43,7 +45,7 @@ The [Harp StepperDriver](https://github.com/harp-tech/device.stepperdriver) feat
 - Insert a [`KeyDown`] source and set the `Filter` property to `7`.
 
 For each of the following registers:
-- Insert a [`Float`] expression on a new branch and set the `Value` property to the specific default value.
+- Insert a [`Float`] expression on a new branch and set the `Value` property to the default value from the table below.
 - Insert a [`Format (Harp)`] operator and configure the following properties:
    - `Format` - Select `Write`.
    - `Register` - Select [`FormatMessagePayload`].
@@ -52,11 +54,11 @@ For each of the following registers:
 
 | Register Name                      | Address | Default Values | Description   |    
 | ---------------------------------  | ------- | -------------- | ------------- | 
-| `Motor1QuickMovementPulseDistance` | 131     | 1.25 / 2.5     | Sets the single pulse distance for a quick movement, in millimeters, for the Motor 1. |
-| `Motor1QuickMovementNominalSpeed`  | 133     | 60             | Sets the target speed for a quick movement, in millimeters per second, for the Motor 1. |
-| `Motor1QuickMovementInitialSpeed`  | 135     | 2              | Sets the initial speed for a quick movement, in millimeters per second, for the Motor 1. |
-| `Motor1QuickMovementAcceleration`  | 137     | 2.5            | Sets the acceleration for a quick movement, in millimeters per second^2, for the Motor 1. | 
-| `Motor1QuickMovementDistance`      | 139     | 5 / -5         | Sets the travel distance of a quick movement, in millimeters, for the Motor 1. The sign of the value will determine the direction of movement. |
+| `Motor1QuickMovementPulseDistance` | 131     | 1.25 / 2.5     | Sets the single pulse distance for a quick movement, in millimeters, for Motor 1. |
+| `Motor1QuickMovementNominalSpeed`  | 133     | 60             | Sets the target speed for a quick movement, in millimeters per second, for Motor 1. |
+| `Motor1QuickMovementInitialSpeed`  | 135     | 2              | Sets the initial speed for a quick movement, in millimeters per second, for Motor 1. |
+| `Motor1QuickMovementAcceleration`  | 137     | 2.5            | Sets the acceleration for a quick movement, in millimeters per second^2, for Motor 1. | 
+| `Motor1QuickMovementDistance`      | 139     | 5 / -5         | Sets the travel distance of a quick movement, in millimeters, for Motor 1. The sign determines the direction of movement. |
 
 > [!TIP]
 > The equivalent register addresses for `Motor2` are each offset by +1 (e.g. `Motor2QuickMovementPulseDistance` uses register 132).
@@ -66,7 +68,7 @@ For each of the following registers:
 
 Run the workflow and press <kbd>7</kbd> to arm the `QuickMovement`.
 
-You can also adjust the properties, and press <kbd>7</kbd> to change the `QuickMovement` configuration while the workflow is running, which will allow you to test different `QuickMovement` settings.
+While the workflow is running, you can adjust the properties, and press <kbd>7</kbd> to update the `QuickMovement` configuration and test different settings.
 
 ## Exercise 2: Trigger QuickMovement
 

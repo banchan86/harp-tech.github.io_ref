@@ -1,6 +1,6 @@
 # Configure Driver
 
-Configuration parameters must be set for the [Harp StepperDriver](https://github.com/harp-tech/device.stepperdriver) before it can be used to drive stepper motors. 
+Configuration parameters must be set for the [Harp StepperDriver](https://github.com/harp-tech/device.stepperdriver) before it can be used to drive stepper motors.
 
 > [!WARNING]
 > When adding these operators to the workflow, make sure to use the device-specific versions, e.g. `Device (Harp.StepperDriver)` instead of `Device (Harp)`. If correctly selected, the names of these operators in the workflow panel will change to reflect either the name of the device or the selected register/payload.
@@ -53,7 +53,7 @@ The microstep resolution determines the size of each step, and directly affects 
 - Insert a [`SubscribeSubject`] operator named `StepperDriver Events`.
 - Insert a [`Take`] combinator and set the `Count` property to 1.
 - Insert a [`CreateMessage`] operator and configure these properties: 
-   - `Payload` - Set it to [`Motor1MicrostepResolutionPayload`].
+   - `Payload` - Select [`Motor1MicrostepResolutionPayload`].
    - `Motor1MicrostepResolution` - Select the desired microstep resolution (e.g. `Microstep8`).
 - Insert a [`MulticastSubject`] operator named `StepperDriver Commands`.
 
@@ -68,23 +68,23 @@ Other operation parameters to be set include the operation mode of the motor dri
 - Insert a [`SubscribeSubject`] operator named `StepperDriver Events`.
 - Insert a [`Take`] combinator and set the `Count` property to 1.
 - Insert a [`CreateMessage`] operator and configure these properties: 
-   - `Payload` - Set it to [`Motor1OperationModePayload`].
-   - `Motor1OperationMode` - Set it to `QuietMode` for regular operation and `DynamicMovements` for quick movements.
+   - `Payload` - Select [`Motor1OperationModePayload`].
+   - `Motor1OperationMode` - Set `QuietMode` for regular operation and `DynamicMovements` for quick movements.
 - Insert a [`CreateMessage`] operator on another branch, and configure these properties:
-   - `Payload` - Set it to [`Motor1MaximumRunCurrentPayload`].
-   - `Motor1MaximumRunCurrent` - Set it to match the motor's rated phase current in amps (e.g. 1).
+   - `Payload` - Select [`Motor1MaximumRunCurrentPayload`].
+   - `Motor1MaximumRunCurrent` - Set the motor's rated phase current in amps (e.g. 1).
 - Insert a [`CreateMessage`] operator on another branch, and configure these properties:
-   - `Payload` - Set it to [`Motor1HoldCurrentReductionPayload`].
-   - `Motor1HoldCurrentReduction` - Set it to minimise heat reduction and adjust the holding torque of the motor at rest (e.g. `ReductionTo25Percent` for low holding torque with light external loads). 
+   - `Payload` - Select [`Motor1HoldCurrentReductionPayload`].
+   - `Motor1HoldCurrentReduction` - Set to minimise heat generation and adjust the holding torque of the motor at rest (e.g. `ReductionTo25Percent` for low holding torque with light external loads). 
 - Insert a [`Merge`] operator to combine all three commands into one [`HarpMessage`] stream.
 - Insert a [`MulticastSubject`] operator named `StepperDriver Commands`.
 
 > [!TIP]
-> The previous configuration commands can also be combined using [`Merge`] and sent into a single `StepperDriver Commands` pipeline.
+> All configuration commands can be combined using [`Merge`] and sent into a single `StepperDriver Commands` pipeline.
 
 ## Enable and disable motor drivers
 
-Lastly, motor drivers have to be enabled before use, but can be disabled at any time.
+Motor drivers have to be enabled before use and can be disabled at any time.
 
 :::workflow
 ![StepperDriver Toggle Motor](../workflows/stepperdriver-configuration-togglemotor.bonsai)
@@ -92,19 +92,19 @@ Lastly, motor drivers have to be enabled before use, but can be disabled at any 
 
 - Insert a [`KeyDown`] source and set the `Filter` property to `1`. 
 - Insert a [`CreateMessage`] operator and configure these properties:
-    - `Payload` - Set this to [`EnableDriverPayload`].
-    - `EnableDriver` - Set this to the motor driver to enable (e.g. `Motor1`).
+    - `Payload` - Select [`EnableDriverPayload`].
+    - `EnableDriver` - Select motor driver to enable (e.g. `Motor1`).
 - Insert a [`MulticastSubject`] operator named `StepperDriver Commands`.
 
 To disable the driver, set up a separate pipeline:
 
 - Insert a [`KeyDown`] source and set the `Filter` property to `2`. 
 - Insert a [`CreateMessage`] operator and configure these properties:
-    - `Payload` - Set this to [`DisableDriverPayload`].
-    - `DisableDriver` - Set this to the motor driver to disable (e.g. `Motor1`).
+    - `Payload` - Select [`DisableDriverPayload`].
+    - `DisableDriver` - Select the motor driver to disable (e.g. `Motor1`).
 - Insert a [`MulticastSubject`] operator named `StepperDriver Commands`.
 
-Run the workflow and press the <kbd>1</kbd> key to enable the driver and <kbd>2</kbd> key to disable the driver. When the driver is enabled, the LED above the driver connection on the device will blink red.
+Run the workflow and press <kbd>1</kbd> to enable the driver and <kbd>2</kbd> to disable the driver. When the driver is enabled, the LED above the driver connection on the device will blink red.
 
 > [!TIP]
 > To target multiple drivers, enter their names, separated by a comma, for the `EnableDriver` and `DisableDriver` properties (e.g. `Motor0`, `Motor1`).
