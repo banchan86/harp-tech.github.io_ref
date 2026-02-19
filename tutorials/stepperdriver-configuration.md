@@ -8,7 +8,7 @@ Configuration parameters must be set for the [Harp StepperDriver](https://github
 ## Prerequisites
 
 - Install the `Bonsai.Windows.Input` package from the Bonsai [package manager](https://bonsai-rx.org/docs/articles/packages.html).
-- The steps listed below demonstrate driver configuration for a single stepper motor connected to the `Motor1` output on the `StepperDriver`. Adjust the relevant properties for your specific configuration.
+- The steps listed below demonstrate driver configuration for a single stepper motor (`Motor1`) connected to the `Stepper 1` output on the `StepperDriver`. Adjust the relevant properties for your specific configuration.
 
 ## Device pattern
 
@@ -84,7 +84,7 @@ Other operation parameters to be set include the operation mode of the motor dri
 > [!TIP]
 > The previous configuration commands can also be combined using [`Merge`] and sent into a single `StepperDriver Commands` pipeline.
 
-## Enable and disable motors
+## Enable and disable motor drivers
 
 Lastly, motor drivers have to be enabled before use, but can be disabled at any time.
 
@@ -95,21 +95,21 @@ Lastly, motor drivers have to be enabled before use, but can be disabled at any 
 - Insert a [`KeyDown`] source and set the `Filter` property to `1`. 
 - Insert a [`CreateMessage`] operator and configure these properties:
     - `Payload` - Set this to [`EnableDriverPayload`].
-    - `EnableDriver` - Set this to the motor to enable (e.g. `Motor1`).
+    - `EnableDriver` - Set this to the motor driver to enable (e.g. `Motor1`).
 - Insert a [`MulticastSubject`] operator named `StepperDriver Commands`.
 
-To disable the motor, set up a separate pipeline:
+To disable the driver, set up a separate pipeline:
 
 - Insert a [`KeyDown`] source and set the `Filter` property to `2`. 
 - Insert a [`CreateMessage`] operator and configure these properties:
     - `Payload` - Set this to [`DisableDriverPayload`].
-    - `DisableDriver` - Set this to the motor to disable (e.g. `Motor1`).
+    - `DisableDriver` - Set this to the motor driver to disable (e.g. `Motor1`).
 - Insert a [`MulticastSubject`] operator named `StepperDriver Commands`.
 
-Run the workflow and press the <kbd>1</kbd> key to enable the motor and <kbd>2</kbd> key to disable the motor. When the motor is enabled, the LED above the motor port on the device will blink red.
+Run the workflow and press the <kbd>1</kbd> key to enable the driver and <kbd>2</kbd> key to disable the driver. When the driver is enabled, the LED above the driver connection on the device will blink red.
 
 > [!TIP]
-> To target multiple motors, enter their names, separated by a comma, for the `EnableDriver` and `DisableDriver` properties (e.g. `Motor0`, `Motor1`).
+> To target multiple drivers, enter their names, separated by a comma, for the `EnableDriver` and `DisableDriver` properties (e.g. `Motor0`, `Motor1`).
 
 <!--Reference Style Links -->
 [``BehaviourSubject`1``]: xref:Bonsai.Reactive.BehaviorSubject
@@ -129,4 +129,3 @@ Run the workflow and press the <kbd>1</kbd> key to enable the motor and <kbd>2</
 [`PublishSubject`]: xref:Bonsai.Reactive.PublishSubject
 [`SubscribeSubject`]: xref:Bonsai.Expressions.SubscribeSubject
 [`Take`]: xref:Bonsai.Reactive.Take
-[`Timer`]: xref:Bonsai.Reactive.Timer

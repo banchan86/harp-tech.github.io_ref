@@ -237,5 +237,4 @@ Run the workflow and press <kbd>6</kbd> to reset the accumulated steps. Observe 
 [`StepRelativePayload`]: xref:Harp.StepperDriver.StepRelativePayload
 [`SubscribeSubject`]: xref:Bonsai.Expressions.SubscribeSubject
 [`Take`]: xref:Bonsai.Reactive.Take
-[`Timer`]: xref:Bonsai.Reactive.Timer
 [`VisualizerWindow`]: xref:Bonsai.Design.VisualizerWindow
