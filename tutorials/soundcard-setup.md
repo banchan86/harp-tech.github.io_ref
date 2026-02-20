@@ -36,9 +36,11 @@ Waveforms can be generated and uploaded to the `SoundCard` in Bonsai. Optionally
 - Set the `PortName` property of the [`SoundCard`](xref:Harp.SoundCard.Device) operator to the communications port of the `SoundCard` (e.g. COM7).
 - Run the workflow. If the `SoundCard` is properly connected, you should hear a short tone.
 
-## Version information
+<br>
 
-These tutorials were developed and tested with:
-- **Hardware**: v2.2
-- **Firmware**: v2.2
-- **Harp.SoundCard Package**: v0.2
+---
+
+These tutorials were written and tested with:<br>
+**Hardware** v2.2<br>
+**Firmware** v2.2<br>
+**Harp.SoundCard** v0.2
