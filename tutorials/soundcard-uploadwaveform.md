@@ -29,7 +29,7 @@ Continuous streaming of sample buffers is not supported, so the entire waveform 
 
 ## Waveform Requirements
 
-- `Type` - The [`UpdateSoundWaveform`] operator accepts `byte[]` and `Mat` type inputs. For these exercises, we will use `Mat`, where rows represent channels and columns represent samples.
+- `Type` - The [`UpdateSoundWaveform`] operator accepts `byte[]` and `Mat` type inputs. For these exercises, we will use `Mat`, a matrix format commonly used for audio data in Bonsai, where rows represent channels and columns represent samples.
 - `Bit Depth` - Waveforms must be encoded as 32-bit signed integers (`S32`).
 - `Channels` - Both mono and stereo waveforms are supported.
 - `Size` - Each sound index on the `SoundCard` memory can store an 8 MB file, corresponding to ~2 million samples. Mono waveforms are duplicated for dual-channel playback and occupy the same amount of storage space as stereo waveforms.
@@ -100,10 +100,10 @@ Run the workflow and press the <kbd>A</kbd> key to upload the waveform. Test it 
 
 ## Exercise 4: Load waveform from raw binary matrix file
 
-Waveforms can also be loaded from raw binary matrix files (`*.mat`).
+Waveforms can also be loaded from raw binary matrix files (`*.bin`).
 
 :::workflow
-![Upload Waveform MAT File](../workflows/soundcard-uploadwaveform-matfile.bonsai)
+![Upload Waveform BIN File](../workflows/soundcard-uploadwaveform-binfile.bonsai)
 :::
 
 - Insert a [`KeyDown`] source and set the `Filter` property to `A`.
@@ -111,17 +111,14 @@ Waveforms can also be loaded from raw binary matrix files (`*.mat`).
    - `BufferLength` - Set 0 to load the entire file into a single buffer (`SampleRate` is ignored here).
    - `ChannelCount` - Set the number of channels in the file (1 for mono or 2 for stereo).
    - `Depth` - Select the bit depth of the input file (e.g. `S32`). 
-   - `Layout` - Select `RowMajor`.
-   - `Path` - Set the file path of the *.mat file to load.
+   - `Layout` - For mono files, this has no effect. For stereo files, select `RowMajor` if the channels are stored sequentially, or `ColumnMajor` if the channels are interleaved.
+   - `Path` - Set the file path of the `*.bin` file to load.
 - Insert a [`UpdateSoundWaveform`] operator and configure the relevant properties.
 
 Run the workflow and press the <kbd>A</kbd> key to upload the waveform. Test it out by playing the [sound index](soundcard-playsound.md#exercise-1---play-sound-index).
 
 > [!TIP]
-> Add a [`ConvertScale`] after [`MatrixReader`] if the `*.mat` bit depth is not `S32`.
-
-> [!TIP]
-> Stereo channel samples should be stored in the `*.mat` file in sequential order (not interleaved).
+> Add a [`ConvertScale`] after [`MatrixReader`] if the `*.bin` bit depth is not `S32`.
 
 <!--Reference Style Links -->
 [`AudioReader`]: xref:Bonsai.Audio.AudioReader
