@@ -1,23 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <WorkflowBuilder Version="2.9.0"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                 xmlns:wie="clr-namespace:Bonsai.Windows.Input;assembly=Bonsai.Windows.Input"
+                 xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
+                 xmlns:p1="clr-namespace:Harp.StepperDriver;assembly=Harp.StepperDriver"
                  xmlns:harp="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp"
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
     <Nodes>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>StepperDriver Events</Name>
+      </Expression>
       <Expression xsi:type="Combinator">
-        <Combinator xsi:type="wie:KeyDown">
-          <wie:Filter>H</wie:Filter>
-          <wie:SuppressRepetitions>false</wie:SuppressRepetitions>
+        <Combinator xsi:type="rx:Take">
+          <rx:Count>1</rx:Count>
         </Combinator>
       </Expression>
-      <Expression xsi:type="harp:CreateMessage">
+      <Expression xsi:type="p1:CreateMessage">
         <harp:MessageType>Write</harp:MessageType>
-        <harp:Payload xsi:type="harp:CreateMessagePayload">
-          <harp:Address>130</harp:Address>
-          <harp:PayloadType>U8</harp:PayloadType>
-          <harp:Value>2</harp:Value>
+        <harp:Payload xsi:type="p1:CreateMotor1QuickMovementPulseDistancePayload">
+          <p1:Motor1QuickMovementPulseDistance>2.5</p1:Motor1QuickMovementPulseDistance>
         </harp:Payload>
       </Expression>
       <Expression xsi:type="MulticastSubject">
@@ -27,6 +28,7 @@
     <Edges>
       <Edge From="0" To="1" Label="Source1" />
       <Edge From="1" To="2" Label="Source1" />
+      <Edge From="2" To="3" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>

@@ -1,21 +1,21 @@
 # QuickMovement
 
-The [Harp StepperDriver](https://github.com/harp-tech/device.stepperdriver) features a special `QuickMovement` mode that can be used for extremely fast movements with low trigger latency.
+The [Harp StepperDriver](https://github.com/harp-tech/device.stepperdriver) features a special `QuickMovement` mode that can be used for extremely fast movements with low trigger latency. It requires calibration and preloading of speed and distance parameters.
 
 > [!TIP]
 > For some applications requiring fast movements, [`StepRelative`](./stepperdriver-controlmotor.md#exercise-6-move-continuously) with position limits configured may be sufficient.
 
 ## Prerequisites
 
-- Install the `Bonsai.Windows.Input` package from the Bonsai [package manager](https://bonsai-rx.org/docs/articles/packages.html).
 - `QuickMovement` requires firmware `fw0.7-harp1.14` and later. Download the firmware from the [release](https://github.com/harp-tech/device.stepperdriver/releases) page and update it with the [Harp Toolkit](https://github.com/harp-tech/toolkit).
-- Connect a stepper motor (`Motor1`) to `Stepper 1` output for these exercises. `QuickMovement` is only supported on `Stepper 1` and `Stepper 2` drivers.
+- `QuickMovement` is only supported on `Stepper 1` and `Stepper 2` drivers. Connect a stepper motor (`Motor1`) to `Stepper 1` output for these exercises.
+- Install the `Bonsai.Windows.Input` package from the Bonsai [package manager](https://bonsai-rx.org/docs/articles/packages.html).
 - Set up the [device pattern](./stepperdriver-configuration.md#device-pattern), [configure](./stepperdriver-configuration.md) the device, and [enable](./stepperdriver-configuration.md#enable-and-disable-motor-drivers) the `Motor1` stepper driver.
-- Use the [position visualizer](./stepperdriver-controlmotor.md#visualize-position) to visualize the movement.
+- Use the [position visualizer](./stepperdriver-controlmotor.md#visualize-position) to monitor the movement.
 
-## Driver Configuration
+## Configure Driver
 
-`QuickMovement` requires the motor driver to be configured for `DynamicMovements`. Set a higher sampling rate for the [`AccumulatedSteps`] event for visualization.
+Configure the motor driver operation mode for `QuickMovement` and set a higher sampling rate for the [`AccumulatedSteps`] event for visualization.
 
 :::workflow
 ![StepperDriver QuickMovement Driver Configuration](../workflows/stepperdriver-quickmovement-driverconfiguration.bonsai)
@@ -32,59 +32,64 @@ The [Harp StepperDriver](https://github.com/harp-tech/device.stepperdriver) feat
 - Combine the two messages with a [`Merge`] combinator.
 - Insert a [`MulticastSubject`] operator named `StepperDriver Commands`.
 
-## Exercise 1: Arm QuickMovement 
+## Exercise 1: Calibrate QuickMovement
 
-`QuickMovement` is not yet supported by the `Harp.StepperDriver` Bonsai interface package. Instead, it can be accessed through the generic [`Bonsai.Harp`](../articles/operators.md) interface. 
+:::workflow
+![StepperDriver QuickMovement Calibration](../workflows/stepperdriver-quickmovement-calibration.bonsai)
+:::
 
-With this interface, values for configuration are converted into [`HarpMessage`] commands using the [`Format (Harp)`] operator. Values have been precalibrated and are set in millimeters rather than steps. The configuration is subsequently preloaded into the `StepperDriver` to arm the `QuickMovement` for rapid execution.
+Calibrate `QuickMovement` before use. Subsequent commands will use millimeters (mm) or millimeters per second (mm/s) for values instead of steps or step intervals.
+
+- Insert a [`SubscribeSubject`] operator named `StepperDriver Events`.
+- Insert a [`Take`] combinator and set the `Count` property to 1.
+- Insert a [`CreateMessage`] operator and configure these properties:
+   - `Payload` - Select [`Motor1QuickMovementPulseDistancePayload`].
+   - `Motor1QuickMovementPulseDistance` - Set the calibrated measurement for a single step pulse, in mm (e.g. 2.5).
+- Insert a [`MulticastSubject`] operator named `StepperDriver Commands`.
+
+> [!WARNING]
+> Recalibrate `QuickMovement` if you change [`Motor1MicrostepResolution`], as it determines the size of each step.
+
+## Exercise 2: Arm QuickMovement
+
+Preload speed and distance parameters to arm the `QuickMovement` for rapid execution.
 
 :::workflow
 ![StepperDriver QuickMovement Arming](../workflows/stepperdriver-quickmovement-arming.bonsai)
 :::
 
 - Insert a [`KeyDown`] source and set the `Filter` property to `7`.
-
-For each of the following registers:
-- Insert a [`Float`] expression on a new branch and set the `Value` property to the default value from the table below.
-- Insert a [`Format (Harp)`] operator and configure the following properties:
-   - `Format` - Select `Write`.
-   - `Register` - Select [`FormatMessagePayload`].
-   - `Address` - Set the register address.
-   - `PayloadType` - Set to `Float`.
-
-| Register Name                      | Address | Default Values | Description   |    
-| ---------------------------------  | ------- | -------------- | ------------- | 
-| `Motor1QuickMovementPulseDistance` | 131     | 1.25 / 2.5     | Sets the single pulse distance for a quick movement, in millimeters, for Motor 1. |
-| `Motor1QuickMovementNominalSpeed`  | 133     | 60             | Sets the target speed for a quick movement, in millimeters per second, for Motor 1. |
-| `Motor1QuickMovementInitialSpeed`  | 135     | 2              | Sets the initial speed for a quick movement, in millimeters per second, for Motor 1. |
-| `Motor1QuickMovementAcceleration`  | 137     | 2.5            | Sets the acceleration for a quick movement, in millimeters per second^2, for Motor 1. | 
-| `Motor1QuickMovementDistance`      | 139     | 5 / -5         | Sets the travel distance of a quick movement, in millimeters, for Motor 1. The sign determines the direction of movement. |
-
-> [!TIP]
-> The equivalent register addresses for `Motor2` are each offset by +1 (e.g. `Motor2QuickMovementPulseDistance` uses register 132).
-
+- Insert a [`CreateMessage`] operator on a separate branch and configure these properties:
+   - `Payload` - Select [`Motor1QuickMovementInitialSpeedPayload`].
+   - `Motor1QuickMovementInitialSpeed` - Set the initial speed in mm/s (e.g. 2).
+- Insert a [`CreateMessage`] operator on a separate branch and configure these properties:
+   - `Payload` - Select [`Motor1QuickMovementNominalSpeedPayload`].
+   - `Motor1QuickMovementNominalSpeed` - Set the target speed in mm/s (e.g. 60).
+- Insert a [`CreateMessage`] operator on a separate branch and configure these properties:
+   - `Payload` - Select [`Motor1QuickMovementAccelerationPayload`].
+   - `Motor1QuickMovementAcceleration` - Set the acceleration in mm/s² (e.g. 2.5).
+- Insert a [`CreateMessage`] operator on a separate branch and configure these properties:
+   - `Payload` - Select [`Motor1QuickMovementDistancePayload`].
+   - `Motor1QuickMovementDistance` - Set the travel distance in mm (e.g. 5 or -5, where the sign determines direction).
 - Insert a [`Merge`] operator to combine all the commands.
 - Insert a [`MulticastSubject`] operator named `StepperDriver Commands`.
 
 Run the workflow and press <kbd>7</kbd> to arm the `QuickMovement`.
 
-While the workflow is running, you can adjust the properties, and press <kbd>7</kbd> to update the `QuickMovement` configuration and test different settings.
+While the workflow is running, you can adjust the properties and press <kbd>7</kbd> to update the `QuickMovement` configuration to test different settings.
 
-## Exercise 2: Trigger QuickMovement
+## Exercise 3: Trigger QuickMovement
 
-To trigger the `QuickMovement`, use a [`CreateMessage (Harp)`] to access the `TriggerQuickMovement` register.
+Trigger `QuickMovement` with a single command.
 
 :::workflow
-![StepperDriver QuickMovement Trigger](../workflows/stepperdriver-quickmovement-trigger.bonsai)
+![StepperDriver QuickMovement Trigger](../workflows/stepperdriver-quickmovement-triggering.bonsai)
 :::
 
 - Insert a [`KeyDown`] source and set the `Filter` property to `H`.
-- Insert a [`CreateMessage (Harp)`] operator and configure the following properties:
-   - `Format` - Select `Write`.
-   - `Register` - Select [`CreateMessagePayload`].
-   - `Address` - Set the register address to 130.
-   - `PayloadType` - Set to `U8`.
-   - `Value` - Set to 2 for `Motor1`, or 4 for `Motor2`.
+- Insert a [`CreateMessage`] operator and configure the following properties:
+   - `Payload` - Select [`TriggerQuickMovementPayload`].
+   - `TriggerQuickMovement` - Select `Motor1`.
 - Insert a [`MulticastSubject`] operator named `StepperDriver Commands`.
 
 Run the workflow and press <kbd>H</kbd> to trigger the `QuickMovement`.
@@ -93,16 +98,16 @@ Run the workflow and press <kbd>H</kbd> to trigger the `QuickMovement`.
 [`AccumulatedSteps`]: xref:Harp.StepperDriver.AccumulatedSteps
 [`AccumulatedStepsSamplingRatePayload`]: xref:Harp.StepperDriver.CreateAccumulatedStepsSamplingRatePayload
 [`CreateMessage`]: xref:Harp.StepperDriver.CreateMessage
-[`CreateMessage (Harp)`]: xref:Bonsai.Harp.CreateMessage
-[`CreateMessagePayload`]: xref:Bonsai.Harp.CreateMessagePayload
-[`Float`]: xref:Bonsai.Expressions.FloatProperty
-[`Format (Harp)`]: xref:Bonsai.Harp.Format
-[`FormatMessagePayload`]: xref:Bonsai.Harp.FormatMessagePayload
-[`HarpMessage`]: xref:Bonsai.Harp.HarpMessage
 [`KeyDown`]: xref:Bonsai.Windows.Input.KeyDown
 [`Merge`]: xref:Bonsai.Reactive.Merge
+[`Motor1QuickMovementAccelerationPayload`]: xref:Harp.StepperDriver.CreateMotor1QuickMovementAccelerationPayload
+[`Motor1QuickMovementInitialSpeedPayload`]: xref:Harp.StepperDriver.CreateMotor1QuickMovementInitialSpeedPayload
+[`Motor1QuickMovementDistancePayload`]: xref:Harp.StepperDriver.CreateMotor1QuickMovementDistancePayload
+[`Motor1QuickMovementPulseDistancePayload`]: xref:Harp.StepperDriver.CreateMotor1QuickMovementPulseDistancePayload
+[`Motor1QuickMovementNominalSpeedPayload`]: xref:Harp.StepperDriver.CreateMotor1QuickMovementNominalSpeedPayload
 [`Motor1OperationModePayload`]: xref:Harp.StepperDriver.CreateMotor1OperationModePayload
+[`Motor1MicrostepResolution`]: xref:Harp.StepperDriver.Motor1MicrostepResolution
 [`MulticastSubject`]: xref:Bonsai.Expressions.MulticastSubject
-[`StepRelative`]: xref:Harp.StepperDriver.StepRelative
 [`SubscribeSubject`]: xref:Bonsai.Expressions.SubscribeSubject
 [`Take`]: xref:Bonsai.Reactive.Take
+[`TriggerQuickMovementPayload`]: xref:Harp.StepperDriver.CreateTriggerQuickMovementPayload
