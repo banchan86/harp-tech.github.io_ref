@@ -3,7 +3,7 @@
 The [Harp StepperDriver](https://github.com/harp-tech/device.stepperdriver) features a special `QuickMovement` mode that can be used for extremely fast movements with low trigger latency.
 
 > [!TIP]
-> For some applications requiring fast movements, [`StepRelative`](./stepperdriver-controlmotor.md#exercise-7-move-continuously) with position limits configured may be sufficient.
+> For some applications requiring fast movements, [`StepRelative`](./stepperdriver-controlmotor.md#exercise-6-move-continuously) with position limits configured may be sufficient.
 
 ## Prerequisites
 

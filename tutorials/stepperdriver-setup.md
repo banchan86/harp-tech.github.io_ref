@@ -4,7 +4,6 @@ The [Harp StepperDriver](https://github.com/harp-tech/device.stepperdriver) is a
 
 ## Installation
 
-- Install the [FTDI D2XX driver](https://ftdichip.com/drivers/d2xx-drivers/)
 - Install [Bonsai](https://bonsai-rx.org/docs/articles/installation.html).
 - Install the `Harp.StepperDriver` package by searching for it in the [Bonsai package manager](https://bonsai-rx.org/docs/articles/packages.html). If the package does not appear in the search results, enable the "Show advanced" option.
 
@@ -15,3 +14,12 @@ The [Harp StepperDriver](https://github.com/harp-tech/device.stepperdriver) is a
 **Power Supply** - The `StepperDriver` requires an external power supply that matches your motor configuration:
 - **Voltage** - Select a supply matching the recommended driving voltage listed in the motor datasheet (15-35 V). For high-speed and high-torque applications, supply at least 10 V above the minimum driving voltage, and mount the `StepperDriver` on a metal surface to dissipate heat.
 - **Current** - Provide at least double the motor's rated phase current, multiplied by the number of motors (e.g. 8 A for two 2 A motors).
+
+<br>
+
+---
+
+These tutorials were written and tested with:<br>
+**Hardware** v1.0<br>
+**Firmware** v0.7<br>
+**Harp.StepperDriver** v0.4
