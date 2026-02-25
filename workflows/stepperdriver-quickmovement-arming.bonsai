@@ -23,19 +23,19 @@
       <Expression xsi:type="p1:CreateMessage">
         <harp:MessageType>Write</harp:MessageType>
         <harp:Payload xsi:type="p1:CreateMotor1QuickMovementNominalSpeedPayload">
-          <p1:Motor1QuickMovementNominalSpeed>60</p1:Motor1QuickMovementNominalSpeed>
+          <p1:Motor1QuickMovementNominalSpeed>200</p1:Motor1QuickMovementNominalSpeed>
         </harp:Payload>
       </Expression>
       <Expression xsi:type="p1:CreateMessage">
         <harp:MessageType>Write</harp:MessageType>
         <harp:Payload xsi:type="p1:CreateMotor1QuickMovementAccelerationPayload">
-          <p1:Motor1QuickMovementAcceleration>2.5</p1:Motor1QuickMovementAcceleration>
+          <p1:Motor1QuickMovementAcceleration>5</p1:Motor1QuickMovementAcceleration>
         </harp:Payload>
       </Expression>
       <Expression xsi:type="p1:CreateMessage">
         <harp:MessageType>Write</harp:MessageType>
         <harp:Payload xsi:type="p1:CreateMotor1QuickMovementDistancePayload">
-          <p1:Motor1QuickMovementDistance>5</p1:Motor1QuickMovementDistance>
+          <p1:Motor1QuickMovementDistance>20</p1:Motor1QuickMovementDistance>
         </harp:Payload>
       </Expression>
       <Expression xsi:type="Combinator">
