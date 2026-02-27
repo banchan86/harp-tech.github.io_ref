@@ -17,6 +17,12 @@
       </Expression>
       <Expression xsi:type="p1:CreateMessage">
         <harp:MessageType>Write</harp:MessageType>
+        <harp:Payload xsi:type="p1:CreateMotor1MicrostepResolutionPayload">
+          <p1:Motor1MicrostepResolution>Microstep8</p1:Motor1MicrostepResolution>
+        </harp:Payload>
+      </Expression>
+      <Expression xsi:type="p1:CreateMessage">
+        <harp:MessageType>Write</harp:MessageType>
         <harp:Payload xsi:type="p1:CreateMotor1OperationModePayload">
           <p1:Motor1OperationMode>DynamicMovements</p1:Motor1OperationMode>
         </harp:Payload>
@@ -38,9 +44,11 @@
       <Edge From="0" To="1" Label="Source1" />
       <Edge From="1" To="2" Label="Source1" />
       <Edge From="1" To="3" Label="Source1" />
-      <Edge From="2" To="4" Label="Source1" />
-      <Edge From="3" To="4" Label="Source2" />
+      <Edge From="1" To="4" Label="Source1" />
+      <Edge From="2" To="5" Label="Source1" />
+      <Edge From="3" To="5" Label="Source2" />
       <Edge From="4" To="5" Label="Source3" />
+      <Edge From="5" To="6" Label="Source3" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
