@@ -1,6 +1,6 @@
 # Control Motor
 
-The follow exercises demonstrate how to control motor speed and rotational position with the [Harp StepperDriver](https://github.com/harp-tech/device.stepperdriver).
+The following exercises demonstrate how to control motor speed and rotational position with the [Harp StepperDriver](https://github.com/harp-tech/device.stepperdriver).
 
 > [!WARNING]
 > Ensure that you are familiar with the operation of the `StepperDriver` and motors before connecting external loads. Consider using end-of-travel switches in conjunction with a [digital input](xref:Harp.StepperDriver.CreateEnableDigitalInputsPayload) [configuration](xref:Harp.StepperDriver.CreateInput0OpModePayload). Improper use of the `StepperDriver` and motors may result in damage to equipment.

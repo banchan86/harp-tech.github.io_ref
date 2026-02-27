@@ -51,7 +51,7 @@ Connect the external load to the stepper motor, and move the motor a set number 
    - `Motor1MoveRelative` - Set the number of steps to move (e.g. 100).
 - Insert a [`MulticastSubject`] operator named `StepperDriver Commands`.
 
-Run the workflow and press <kbd>A</kbd> to move the external load. Measure the distance travelled and divide by the number of steps to get the distance per step pulse.
+Run the workflow and press <kbd>A</kbd> to move the external load. Measure the distance traveled and divide by the number of steps to get the distance per step pulse.
 
 - Insert a [`SubscribeSubject`] operator named `StepperDriver Events`.
 - Insert a [`Take`] combinator and set the `Count` property to 1.
