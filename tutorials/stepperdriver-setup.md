@@ -5,7 +5,7 @@ The [Harp StepperDriver](https://github.com/harp-tech/device.stepperdriver) is a
 ## Installation
 
 - Install [Bonsai](https://bonsai-rx.org/docs/articles/installation.html).
-- Install the `Harp.StepperDriver` package by searching for it in the [Bonsai package manager](https://bonsai-rx.org/docs/articles/packages.html). If the package does not appear in the search results, enable the "Show advanced" option.
+- Install the `Harp.StepperDriver` package by searching for it in the [Bonsai package manager](https://bonsai-rx.org/docs/articles/packages.html).
 
 ## Connections
 

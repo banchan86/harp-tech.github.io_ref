@@ -19,9 +19,11 @@ Set up the standard Harp [device pattern](../articles/operators.md#device-patter
 :::
 
 - Insert a [`Device`] operator, set the `PortName` property to the communications port for the device.
+- Insert a [`DeviceDataWriter`] sink and set the `Path` property (e.g. `StepperDriver.harp`). 
+   - This will save the data in the standard Harp logging format, which can be loaded with [`harp-python`](../articles/python.md).
 - Insert a [`PublishSubject`] operator and name it `StepperDriver Events`.
 - Right-click the [`Device`] operator, select "Create Source (Bonsai.Harp.HarpMessage)" > "BehaviorSubject". 
-   - Name the generated [``BehaviourSubject`1``] [source subject](https://bonsai-rx.org/docs/articles/subjects.html#source-subjects) `StepperDriver Commands`. 
+   - Name the generated [``BehaviorSubject`1``] [source subject](https://bonsai-rx.org/docs/articles/subjects.html#source-subjects) `StepperDriver Commands`. 
    - Connect it as input to the [`Device`] operator.
 
 ## Configure interlock state
@@ -44,7 +46,7 @@ The `StepperDriver` includes an external interlock terminal (labelled `Enable` o
 
 ## Configure microstep resolution
 
-The microstep resolution determines the size of each step, and directly affects the speed and distance travelled by the movement commands. It must be set individually for each motor driver. Values range from `Microstep8` (coarsest) to `Microstep64` (finest).
+The microstep resolution determines the size of each step, and directly affects the speed and distance of movement commands. It must be set individually for each motor driver. Values range from `Microstep8` (coarsest) to `Microstep64` (finest).
 
 :::workflow
 ![StepperDriver Microstep Resolution](../workflows/stepperdriver-configuration-microstepresolution.bonsai)
@@ -75,7 +77,7 @@ Other operation parameters to be set include the operation mode of the motor dri
    - `Motor1MaximumRunCurrent` - Set the motor's rated phase current in amps (e.g. 1).
 - Insert a [`CreateMessage`] operator on another branch, and configure these properties:
    - `Payload` - Select [`Motor1HoldCurrentReductionPayload`].
-   - `Motor1HoldCurrentReduction` - Set to minimise heat generation and adjust the holding torque of the motor at rest (e.g. `ReductionTo25Percent` for low holding torque with light external loads). 
+   - `Motor1HoldCurrentReduction` - Set to minimize heat generation and adjust the holding torque of the motor at rest (e.g. `ReductionTo25Percent` for low holding torque with light external loads). 
 - Insert a [`Merge`] operator to combine all three commands into one [`HarpMessage`] stream.
 - Insert a [`MulticastSubject`] operator named `StepperDriver Commands`.
 
@@ -110,9 +112,10 @@ Run the workflow and press <kbd>1</kbd> to enable the driver and <kbd>2</kbd> to
 > To target multiple drivers, enter their names, separated by a comma, for the `EnableDriver` and `DisableDriver` properties (e.g. `Motor0`, `Motor1`).
 
 <!--Reference Style Links -->
-[``BehaviourSubject`1``]: xref:Bonsai.Reactive.BehaviorSubject
+[``BehaviorSubject`1``]: xref:Bonsai.Reactive.BehaviorSubject
 [`CreateMessage`]: xref:Harp.StepperDriver.CreateMessage
 [`Device`]: xref:Harp.StepperDriver.Device
+[`DeviceDataWriter`]: xref:Harp.StepperDriver.DeviceDataWriter
 [`DisableDriverPayload`]: xref:Harp.StepperDriver.CreateDisableDriverPayload
 [`EnableDriverPayload`]: xref:Harp.StepperDriver.CreateEnableDriverPayload
 [`HarpMessage`]: xref:Bonsai.Harp.HarpMessage
