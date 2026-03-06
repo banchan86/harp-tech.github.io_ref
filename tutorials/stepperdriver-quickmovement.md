@@ -11,6 +11,7 @@ The [Harp StepperDriver](https://github.com/harp-tech/device.stepperdriver) feat
 ## Prerequisites
 
 - `QuickMovement` requires firmware `fw0.7-harp1.14` and later. Download the firmware from the [release](https://github.com/harp-tech/device.stepperdriver/releases) page and update it with the [Harp Toolkit](https://github.com/harp-tech/toolkit).
+- `QuickMovement` requires `Harp.StepperDriver` package `0.4.0` and later, update it with the Bonsai [package manager](https://bonsai-rx.org/docs/articles/packages.html).
 - `QuickMovement` is only supported on `Stepper 1` and `Stepper 2` drivers. Connect a stepper motor (`Motor1`) to `Stepper 1` output for these exercises.
 - Install the `Bonsai.Windows.Input` package from the Bonsai [package manager](https://bonsai-rx.org/docs/articles/packages.html).
 - Set up the [device pattern](./stepperdriver-configuration.md#device-pattern), and [enable](./stepperdriver-configuration.md#enable-and-disable-motor-drivers) the `Motor1` stepper driver.
